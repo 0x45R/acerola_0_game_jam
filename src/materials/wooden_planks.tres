@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://x05mlbywguri"]
+
+[ext_resource type="Texture2D" uid="uid://bl1njjtuv4u3l" path="res://src/textures/wooden-plank.png" id="1_24nn6"]
+
+[resource]
+albedo_color = Color(0.71989, 0.743571, 0.822737, 1)
+albedo_texture = ExtResource("1_24nn6")
+uv1_scale = Vector3(0.75, 0.75, 0.75)
+uv1_triplanar = true
+texture_filter = 0

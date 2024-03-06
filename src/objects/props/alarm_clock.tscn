@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://duhi1si7op8ys"]
+
+[ext_resource type="PackedScene" uid="uid://lf4a4qt8fufa" path="res://src/models/alarm_clock.blend" id="1_2qmis"]
+[ext_resource type="Theme" uid="uid://de0sidstciui4" path="res://src/ui/themes/theme.tres" id="2_7x1fc"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6dnia"]
+viewport_path = NodePath("Cube_002/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hxv6r"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_6dnia")
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 2.0
+emission_operator = 1
+emission_texture = SubResource("ViewportTexture_6dnia")
+texture_filter = 0
+
+[node name="alarm_clock" instance=ExtResource("1_2qmis")]
+
+[node name="Cube_002" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_hxv6r")
+
+[node name="SubViewport" type="SubViewport" parent="Cube_002" index="0"]
+canvas_item_default_texture_filter = 0
+size = Vector2i(60, 23)
+
+[node name="ColorRect" type="ColorRect" parent="Cube_002/SubViewport" index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Cube_002/SubViewport" index="1"]
+anchors_preset = -1
+anchor_left = -0.05
+anchor_right = 1.05
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_right = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme = ExtResource("2_7x1fc")
+text = "06:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

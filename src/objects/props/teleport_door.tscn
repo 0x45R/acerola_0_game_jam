@@ -1,0 +1,102 @@
+[gd_scene load_steps=11 format=3 uid="uid://dfbcwhan8r4dm"]
+
+[ext_resource type="PackedScene" uid="uid://cigsarkfoaiwx" path="res://src/models/door.blend" id="1_n1xux"]
+[ext_resource type="Script" path="res://src/RootModule.gd" id="2_tql50"]
+[ext_resource type="Script" path="res://src/objects/props/InteractWithProp.gd" id="3_reypk"]
+[ext_resource type="Script" path="res://src/objects/props/teleport_door.gd" id="4_liuu1"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ax81e"]
+data = PackedVector3Array(0.5358, 1.0877, -0.0187, -0.5358, 1.0877, 0.0187, -0.5358, 1.0877, -0.0187, 0.5358, 1.0877, -0.0187, 0.5358, 1.0877, 0.0187, -0.5358, 1.0877, 0.0187, -0.5358, -1.0877, 0.0187, -0.5358, 1.0877, -0.0187, -0.5358, 1.0877, 0.0187, -0.5358, -1.0877, 0.0187, -0.5358, -1.0877, -0.0187, -0.5358, 1.0877, -0.0187, -0.5358, -1.0877, -0.0187, 0.5358, -1.0877, 0.0187, 0.5358, -1.0877, -0.0187, -0.5358, -1.0877, -0.0187, -0.5358, -1.0877, 0.0187, 0.5358, -1.0877, 0.0187, 0.5358, -1.0877, -0.0187, 0.5358, 1.0877, 0.0187, 0.5358, 1.0877, -0.0187, 0.5358, -1.0877, -0.0187, 0.5358, -1.0877, 0.0187, 0.5358, 1.0877, 0.0187, -0.5358, -1.0877, -0.0187, 0.5358, -1.0877, -0.0187, 0.5358, -1.0877, -0.0187, -0.5358, -1.0877, -0.0187, -0.5358, -1.0877, -0.0187, 0.5358, -1.0877, -0.0187, 0.5358, -1.0877, -0.0187, 0.5358, 1.0877, -0.0187, 0.5358, 1.0877, -0.0187, 0.5358, -1.0877, -0.0187, 0.5358, -1.0877, -0.0187, 0.5358, 1.0877, -0.0187, -0.5358, -1.0877, 0.0187, -0.5358, 1.0877, 0.0187, -0.5358, 1.0877, 0.0187, -0.5358, -1.0877, 0.0187, -0.5358, -1.0877, 0.0187, -0.5358, 1.0877, 0.0187, 0.5358, 1.0877, 0.0187, 0.5358, -1.0877, 0.0187, 0.5358, -1.0877, 0.0187, 0.5358, 1.0877, 0.0187, 0.5358, 1.0877, 0.0187, 0.5358, -1.0877, 0.0187, -0.5358, 1.0877, -0.0187, -0.5358, -1.0877, -0.0187, -0.5358, -1.0877, -0.0187, -0.5358, 1.0877, -0.0187, -0.5358, 1.0877, -0.0187, -0.5358, -1.0877, -0.0187, -0.5358, 1.0877, 0.0187, 0.5358, 1.0877, 0.0187, 0.5358, 1.0877, 0.0187, -0.5358, 1.0877, 0.0187, -0.5358, 1.0877, 0.0187, 0.5358, 1.0877, 0.0187, 0.5358, -1.0877, 0.0187, -0.5358, -1.0877, 0.0187, -0.5358, -1.0877, 0.0187, 0.5358, -1.0877, 0.0187, 0.5358, -1.0877, 0.0187, -0.5358, -1.0877, 0.0187, 0.5358, 1.0877, -0.0187, -0.5358, 1.0877, -0.0187, -0.5358, 1.0877, -0.0187, 0.5358, 1.0877, -0.0187, 0.5358, 1.0877, -0.0187, -0.5358, 1.0877, -0.0187, -0.4934, -1.0453, -0.0187, 0.5358, -1.0877, -0.0187, 0.4934, -1.0453, -0.0187, -0.4934, -1.0453, -0.0187, -0.5358, -1.0877, -0.0187, 0.5358, -1.0877, -0.0187, 0.4934, -1.0453, -0.0187, 0.5358, 1.0877, -0.0187, 0.4934, 1.0452, -0.0187, 0.4934, -1.0453, -0.0187, 0.5358, -1.0877, -0.0187, 0.5358, 1.0877, -0.0187, -0.4934, -1.0453, 0.0187, -0.5358, 1.0877, 0.0187, -0.4934, 1.0452, 0.0187, -0.4934, -1.0453, 0.0187, -0.5358, -1.0877, 0.0187, -0.5358, 1.0877, 0.0187, 0.4934, 1.0452, 0.0187, 0.5358, -1.0877, 0.0187, 0.4934, -1.0453, 0.0187, 0.4934, 1.0452, 0.0187, 0.5358, 1.0877, 0.0187, 0.5358, -1.0877, 0.0187, -0.4934, 1.0452, -0.0187, -0.5358, -1.0877, -0.0187, -0.4934, -1.0453, -0.0187, -0.4934, 1.0452, -0.0187, -0.5358, 1.0877, -0.0187, -0.5358, -1.0877, -0.0187, -0.4934, 1.0452, 0.0187, 0.5358, 1.0877, 0.0187, 0.4934, 1.0452, 0.0187, -0.4934, 1.0452, 0.0187, -0.5358, 1.0877, 0.0187, 0.5358, 1.0877, 0.0187, 0.4934, -1.0453, 0.0187, -0.5358, -1.0877, 0.0187, -0.4934, -1.0453, 0.0187, 0.4934, -1.0453, 0.0187, 0.5358, -1.0877, 0.0187, -0.5358, -1.0877, 0.0187, 0.4934, 1.0452, -0.0187, -0.5358, 1.0877, -0.0187, -0.4934, 1.0452, -0.0187, 0.4934, 1.0452, -0.0187, 0.5358, 1.0877, -0.0187, -0.5358, 1.0877, -0.0187, 0.4934, -1.0453, -0.0187, -0.4934, -1.0453, 0.0187, -0.4934, -1.0453, -0.0187, 0.4934, -1.0453, -0.0187, 0.4934, -1.0453, 0.0187, -0.4934, -1.0453, 0.0187, -0.4934, -1.0453, 0.0187, -0.4934, 1.0452, -0.0187, -0.4934, -1.0453, -0.0187, -0.4934, -1.0453, 0.0187, -0.4934, 1.0452, 0.0187, -0.4934, 1.0452, -0.0187, 0.4934, -1.0453, -0.0187, 0.4934, 1.0452, 0.0187, 0.4934, -1.0453, 0.0187, 0.4934, -1.0453, -0.0187, 0.4934, 1.0452, -0.0187, 0.4934, 1.0452, 0.0187, 0.4934, 1.0452, 0.0187, -0.4934, 1.0452, -0.0187, -0.4934, 1.0452, 0.0187, 0.4934, 1.0452, 0.0187, 0.4934, 1.0452, -0.0187, -0.4934, 1.0452, -0.0187)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_2mk3o"]
+data = PackedVector3Array(1.0206, 1.0359, -0.0178, 0, 1.0359, 0.0178, 0, 1.0359, -0.0178, 1.0206, 1.0359, -0.0178, 1.0206, 1.0359, 0.0178, 0, 1.0359, 0.0178, 1.0206, -1.0359, 0.0178, 0, 1.0359, 0.0178, 1.0206, 1.0359, 0.0178, 1.0206, -1.0359, 0.0178, 0, -1.0359, 0.0178, 0, 1.0359, 0.0178, 0, -1.0359, 0.0178, 0, 1.0359, -0.0178, 0, 1.0359, 0.0178, 0, -1.0359, 0.0178, 0, -1.0359, -0.0178, 0, 1.0359, -0.0178, 0, -1.0359, -0.0178, 1.0206, -1.0359, 0.0178, 1.0206, -1.0359, -0.0178, 0, -1.0359, -0.0178, 0, -1.0359, 0.0178, 1.0206, -1.0359, 0.0178, 1.0206, -1.0359, -0.0178, 1.0206, 1.0359, 0.0178, 1.0206, 1.0359, -0.0178, 1.0206, -1.0359, -0.0178, 1.0206, -1.0359, 0.0178, 1.0206, 1.0359, 0.0178, 0, -1.0359, -0.0178, 1.0206, 1.0359, -0.0178, 0, 1.0359, -0.0178, 0, -1.0359, -0.0178, 1.0206, -1.0359, -0.0178, 1.0206, 1.0359, -0.0178)
+
+[sub_resource type="Animation" id="Animation_ydahb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Empty:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rjlpy"]
+resource_name = "closed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Empty:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o7xmr"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Empty:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1.5708, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u02re"]
+_data = {
+"RESET": SubResource("Animation_ydahb"),
+"closed": SubResource("Animation_rjlpy"),
+"open": SubResource("Animation_o7xmr")
+}
+
+[node name="teleport_door" instance=ExtResource("1_n1xux")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube_001" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube_001/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_ax81e")
+
+[node name="RootModule" type="Node3D" parent="Empty" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5103, 0, 0)
+script = ExtResource("2_tql50")
+
+[node name="InteractWithProp" type="Node3D" parent="Empty/RootModule" index="0"]
+script = ExtResource("3_reypk")
+interaction_time = 1.25
+
+[node name="Area3D" type="Area3D" parent="Empty/RootModule/InteractWithProp" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Empty/RootModule/InteractWithProp/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2, -0.5, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_2mk3o")
+
+[node name="Door" type="Node3D" parent="Empty/RootModule/InteractWithProp" index="1"]
+script = ExtResource("4_liuu1")
+scene_path = "res://src/scenes/Office.tscn"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Empty/Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Empty/Cube/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_2mk3o")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_u02re")
+}

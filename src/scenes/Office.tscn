@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://mgeequ0mjbag"]
+
+[ext_resource type="Script" path="res://src/RootModule.gd" id="2_v7aai"]
+[ext_resource type="Script" path="res://src/BaseModule.gd" id="3_xlc37"]
+[ext_resource type="PackedScene" uid="uid://d2edy00f6yd5d" path="res://src/objects/player/Player.tscn" id="11_b2tt2"]
+
+[sub_resource type="Environment" id="Environment_jyysf"]
+background_mode = 1
+background_color = Color(0.34902, 0.34902, 0.34902, 1)
+background_energy_multiplier = 0.75
+tonemap_mode = 2
+glow_enabled = true
+glow_blend_mode = 0
+volumetric_fog_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_t0jup"]
+
+[node name="Office" type="Node3D"]
+
+[node name="Modules" type="Node3D" parent="."]
+script = ExtResource("2_v7aai")
+
+[node name="QuestManager" type="Node3D" parent="Modules"]
+script = ExtResource("3_xlc37")
+
+[node name="Player" parent="." instance=ExtResource("11_b2tt2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.92898, 0.026762, 9.64485)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jyysf")
+camera_attributes = SubResource("CameraAttributesPractical_t0jup")

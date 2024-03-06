@@ -1,0 +1,2 @@
+extends BaseModule
+class_name PropModule

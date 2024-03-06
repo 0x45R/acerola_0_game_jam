@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjrxjp0dpp5w1"]
+
+[ext_resource type="PackedScene" uid="uid://dlqbgoyfk6idd" path="res://src/models/television.blend" id="1_mnk2h"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_py42k"]
+points = PackedVector3Array(0.304933, 0.3, 0.126935, 0.33, 0.27498, 0.126935, 0.304933, 0.3, -0.258088, -0.305063, 0.3, 0.126935, 0.33, 0.27498, -0.258088, 0.33, -0.275039, 0.126935, 0.317984, 0.284436, -0.2736, 0.194977, 0.12498, -0.433058, -0.305063, 0.3, -0.258088, -0.33, 0.27498, 0.126935, 0.33, -0.275039, -0.258088, 0.304933, -0.3, 0.126935, 0.194977, -0.125039, -0.433058, -0.195041, 0.12498, -0.433058, -0.318048, 0.284436, -0.2736, -0.33, 0.27498, -0.258088, -0.33, -0.275039, 0.126935, 0.304933, -0.3, -0.258088, 0.317984, -0.284495, -0.2736, -0.305063, -0.3, 0.126935, -0.195041, -0.125039, -0.433058, -0.318048, -0.284495, -0.2736, -0.33, -0.275039, -0.258088, -0.305063, -0.3, -0.258088)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_tje21"]
+viewport_path = NodePath("Cube_001/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44gug"]
+resource_local_to_scene = true
+albedo_color = Color(0.219608, 0.219608, 0.219608, 1)
+albedo_texture = SubResource("ViewportTexture_tje21")
+roughness = 0.0
+emission_enabled = true
+
+[node name="television" instance=ExtResource("1_mnk2h")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_py42k")
+
+[node name="Cube_001" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_44gug")
+
+[node name="SubViewport" type="SubViewport" parent="Cube_001" index="0"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Cube_001/SubViewport" index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+text = "Hello"
+metadata/_edit_use_anchors_ = true
