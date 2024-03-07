@@ -1,9 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8xdqoafhgby1"]
+[gd_scene load_steps=16 format=3 uid="uid://b8xdqoafhgby1"]
 
 [ext_resource type="PackedScene" uid="uid://cigsarkfoaiwx" path="res://src/models/door.blend" id="1_a4kbh"]
 [ext_resource type="Script" path="res://src/RootModule.gd" id="2_gbopg"]
 [ext_resource type="Script" path="res://src/objects/props/InteractWithProp.gd" id="3_wf7ef"]
 [ext_resource type="Script" path="res://src/objects/props/Openable.gd" id="4_7pjvp"]
+[ext_resource type="Script" path="res://src/objects/props/PlaySoundOnSuccessfulInteraction.gd" id="5_xroyy"]
+[ext_resource type="AudioStream" uid="uid://cs01m62v0x17l" path="res://src/audio/sound/door-open.wav" id="6_1x3cs"]
+[ext_resource type="Script" path="res://src/objects/props/PlaySoundOnFailedInteraction.gd" id="6_xc2wq"]
+[ext_resource type="AudioStream" uid="uid://dpjajs46t4wk2" path="res://src/audio/sound/door-close.wav" id="7_2mci7"]
+[ext_resource type="AudioStream" uid="uid://eknaqjd8ewnk" path="res://src/audio/sound/door-locked.mp3" id="9_7rh3c"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0tmi6"]
 data = PackedVector3Array(0.5358, 1.0877, -0.0187, -0.5358, 1.0877, 0.0187, -0.5358, 1.0877, -0.0187, 0.5358, 1.0877, -0.0187, 0.5358, 1.0877, 0.0187, -0.5358, 1.0877, 0.0187, -0.5358, -1.0877, 0.0187, -0.5358, 1.0877, -0.0187, -0.5358, 1.0877, 0.0187, -0.5358, -1.0877, 0.0187, -0.5358, -1.0877, -0.0187, -0.5358, 1.0877, -0.0187, -0.5358, -1.0877, -0.0187, 0.5358, -1.0877, 0.0187, 0.5358, -1.0877, -0.0187, -0.5358, -1.0877, -0.0187, -0.5358, -1.0877, 0.0187, 0.5358, -1.0877, 0.0187, 0.5358, -1.0877, -0.0187, 0.5358, 1.0877, 0.0187, 0.5358, 1.0877, -0.0187, 0.5358, -1.0877, -0.0187, 0.5358, -1.0877, 0.0187, 0.5358, 1.0877, 0.0187, -0.5358, -1.0877, -0.0187, 0.5358, -1.0877, -0.0187, 0.5358, -1.0877, -0.0187, -0.5358, -1.0877, -0.0187, -0.5358, -1.0877, -0.0187, 0.5358, -1.0877, -0.0187, 0.5358, -1.0877, -0.0187, 0.5358, 1.0877, -0.0187, 0.5358, 1.0877, -0.0187, 0.5358, -1.0877, -0.0187, 0.5358, -1.0877, -0.0187, 0.5358, 1.0877, -0.0187, -0.5358, -1.0877, 0.0187, -0.5358, 1.0877, 0.0187, -0.5358, 1.0877, 0.0187, -0.5358, -1.0877, 0.0187, -0.5358, -1.0877, 0.0187, -0.5358, 1.0877, 0.0187, 0.5358, 1.0877, 0.0187, 0.5358, -1.0877, 0.0187, 0.5358, -1.0877, 0.0187, 0.5358, 1.0877, 0.0187, 0.5358, 1.0877, 0.0187, 0.5358, -1.0877, 0.0187, -0.5358, 1.0877, -0.0187, -0.5358, -1.0877, -0.0187, -0.5358, -1.0877, -0.0187, -0.5358, 1.0877, -0.0187, -0.5358, 1.0877, -0.0187, -0.5358, -1.0877, -0.0187, -0.5358, 1.0877, 0.0187, 0.5358, 1.0877, 0.0187, 0.5358, 1.0877, 0.0187, -0.5358, 1.0877, 0.0187, -0.5358, 1.0877, 0.0187, 0.5358, 1.0877, 0.0187, 0.5358, -1.0877, 0.0187, -0.5358, -1.0877, 0.0187, -0.5358, -1.0877, 0.0187, 0.5358, -1.0877, 0.0187, 0.5358, -1.0877, 0.0187, -0.5358, -1.0877, 0.0187, 0.5358, 1.0877, -0.0187, -0.5358, 1.0877, -0.0187, -0.5358, 1.0877, -0.0187, 0.5358, 1.0877, -0.0187, 0.5358, 1.0877, -0.0187, -0.5358, 1.0877, -0.0187, -0.4934, -1.0453, -0.0187, 0.5358, -1.0877, -0.0187, 0.4934, -1.0453, -0.0187, -0.4934, -1.0453, -0.0187, -0.5358, -1.0877, -0.0187, 0.5358, -1.0877, -0.0187, 0.4934, -1.0453, -0.0187, 0.5358, 1.0877, -0.0187, 0.4934, 1.0452, -0.0187, 0.4934, -1.0453, -0.0187, 0.5358, -1.0877, -0.0187, 0.5358, 1.0877, -0.0187, -0.4934, -1.0453, 0.0187, -0.5358, 1.0877, 0.0187, -0.4934, 1.0452, 0.0187, -0.4934, -1.0453, 0.0187, -0.5358, -1.0877, 0.0187, -0.5358, 1.0877, 0.0187, 0.4934, 1.0452, 0.0187, 0.5358, -1.0877, 0.0187, 0.4934, -1.0453, 0.0187, 0.4934, 1.0452, 0.0187, 0.5358, 1.0877, 0.0187, 0.5358, -1.0877, 0.0187, -0.4934, 1.0452, -0.0187, -0.5358, -1.0877, -0.0187, -0.4934, -1.0453, -0.0187, -0.4934, 1.0452, -0.0187, -0.5358, 1.0877, -0.0187, -0.5358, -1.0877, -0.0187, -0.4934, 1.0452, 0.0187, 0.5358, 1.0877, 0.0187, 0.4934, 1.0452, 0.0187, -0.4934, 1.0452, 0.0187, -0.5358, 1.0877, 0.0187, 0.5358, 1.0877, 0.0187, 0.4934, -1.0453, 0.0187, -0.5358, -1.0877, 0.0187, -0.4934, -1.0453, 0.0187, 0.4934, -1.0453, 0.0187, 0.5358, -1.0877, 0.0187, -0.5358, -1.0877, 0.0187, 0.4934, 1.0452, -0.0187, -0.5358, 1.0877, -0.0187, -0.4934, 1.0452, -0.0187, 0.4934, 1.0452, -0.0187, 0.5358, 1.0877, -0.0187, -0.5358, 1.0877, -0.0187, 0.4934, -1.0453, -0.0187, -0.4934, -1.0453, 0.0187, -0.4934, -1.0453, -0.0187, 0.4934, -1.0453, -0.0187, 0.4934, -1.0453, 0.0187, -0.4934, -1.0453, 0.0187, -0.4934, -1.0453, 0.0187, -0.4934, 1.0452, -0.0187, -0.4934, -1.0453, -0.0187, -0.4934, -1.0453, 0.0187, -0.4934, 1.0452, 0.0187, -0.4934, 1.0452, -0.0187, 0.4934, -1.0453, -0.0187, 0.4934, 1.0452, 0.0187, 0.4934, -1.0453, 0.0187, 0.4934, -1.0453, -0.0187, 0.4934, 1.0452, -0.0187, 0.4934, 1.0452, 0.0187, 0.4934, 1.0452, 0.0187, -0.4934, 1.0452, -0.0187, -0.4934, 1.0452, 0.0187, 0.4934, 1.0452, 0.0187, 0.4934, 1.0452, -0.0187, -0.4934, 1.0452, -0.0187)
@@ -90,6 +95,25 @@ shape = SubResource("ConcavePolygonShape3D_hbbyy")
 [node name="Door" type="Node3D" parent="Empty/RootModule/InteractWithProp" index="1" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("4_7pjvp")
 animation_player = NodePath("../../../../AnimationPlayer")
+
+[node name="PlaySoundOnSuccessfulInteraction" type="Node3D" parent="Empty/RootModule/InteractWithProp" index="2"]
+script = ExtResource("5_xroyy")
+
+[node name="OpenAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Empty/RootModule/InteractWithProp/PlaySoundOnSuccessfulInteraction" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 0, 0)
+stream = ExtResource("6_1x3cs")
+bus = &"SFX"
+
+[node name="CloseAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Empty/RootModule/InteractWithProp/PlaySoundOnSuccessfulInteraction" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 0, 0)
+stream = ExtResource("7_2mci7")
+bus = &"SFX"
+
+[node name="PlaySoundOnFailedInteraction" type="Node3D" parent="Empty/RootModule/InteractWithProp" index="3"]
+script = ExtResource("6_xc2wq")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Empty/RootModule/InteractWithProp/PlaySoundOnFailedInteraction" index="0"]
+stream = ExtResource("9_7rh3c")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Empty/Cube" index="0"]
 

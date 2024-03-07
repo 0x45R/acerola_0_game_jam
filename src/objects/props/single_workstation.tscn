@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://mg2iahrnvdn2"]
+
+[ext_resource type="PackedScene" uid="uid://dn0lireecrx32" path="res://src/objects/props/office_chair.tscn" id="1_7kklu"]
+[ext_resource type="PackedScene" uid="uid://bcquqombag6hf" path="res://src/objects/props/cubicle.tscn" id="2_smvln"]
+
+[node name="SingleWorkstation" type="Node3D"]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 0, 0, 0)
+
+[node name="office_chair" parent="." instance=ExtResource("1_7kklu")]
+transform = Transform3D(5.76205e-08, 0, -1, 0, 1, 0, 1, 0, 5.76205e-08, -2.0227, -2.38419e-07, 0.036594)
+
+[node name="cubicle" parent="." instance=ExtResource("2_smvln")]

@@ -5,6 +5,8 @@ extends BaseModule
 func _physics_process(delta):
 	if (module.state == module.STATE.Running or module.state == module.STATE.Sitting or module.state == module.STATE.Sleeping):
 		return
+	if get_module_root().get_node("Pause").paused:
+		return
 	module.state = module.STATE.Walking
 
 	var input_vector = Input.get_vector("move_left","move_right","move_forward","move_backward").normalized() 

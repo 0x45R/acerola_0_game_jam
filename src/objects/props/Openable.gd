@@ -1,5 +1,5 @@
 extends BaseModule
-
+class_name Openable
 @export var animation_player: AnimationPlayer
 var open = false
 

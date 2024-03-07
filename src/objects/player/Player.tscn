@@ -1,37 +1,45 @@
-[gd_scene load_steps=76 format=3 uid="uid://d2edy00f6yd5d"]
+[gd_scene load_steps=84 format=3 uid="uid://d2edy00f6yd5d"]
 
 [ext_resource type="Script" path="res://src/objects/player/Player.gd" id="1_4scu1"]
 [ext_resource type="Script" path="res://src/BaseModule.gd" id="1_82t3q"]
 [ext_resource type="Script" path="res://src/RootModule.gd" id="2_4313g"]
-[ext_resource type="Script" path="res://src/objects/player/MouseControl.gd" id="3_3it2g"]
 [ext_resource type="Script" path="res://src/objects/player/Camera.gd" id="3_b0ici"]
 [ext_resource type="Script" path="res://src/objects/player/FollowTransform.gd" id="4_5nd80"]
+[ext_resource type="Script" path="res://src/objects/player/Pause.gd" id="4_5rdcv"]
 [ext_resource type="Script" path="res://src/objects/player/Movement/Walk.gd" id="4_51gfw"]
 [ext_resource type="Script" path="res://src/objects/player/Movement.gd" id="5_370tb"]
 [ext_resource type="Texture2D" uid="uid://cga4ee83qmleq" path="res://src/textures/progressbarfull.png" id="5_laqk4"]
 [ext_resource type="Script" path="res://src/objects/player/CameraRotation.gd" id="5_qofaq"]
 [ext_resource type="Texture2D" uid="uid://bu73koat3w5vg" path="res://src/textures/crosshair.png" id="6_exclj"]
-[ext_resource type="Shader" path="res://src/shaders/psx_dither.gdshader" id="6_lcqfb"]
+[ext_resource type="Theme" uid="uid://de0sidstciui4" path="res://src/ui/themes/theme.tres" id="7_8tfa6"]
 [ext_resource type="Script" path="res://src/objects/player/Gravity.gd" id="7_eew56"]
-[ext_resource type="Shader" path="res://src/shaders/psx_fade.gdshader" id="7_qdsc3"]
 [ext_resource type="Script" path="res://src/objects/player/Run.gd" id="8_00s74"]
 [ext_resource type="Script" path="res://src/objects/player/InteractionModule.gd" id="8_j7m7q"]
 [ext_resource type="Script" path="res://src/objects/player/WallAvoidanceModule.gd" id="8_qi7ac"]
+[ext_resource type="Script" path="res://src/ui/CustomAspectRatio.gd" id="10_55vfa"]
+[ext_resource type="Shader" path="res://src/shaders/posterization.gdshader" id="11_8p7af"]
 [ext_resource type="Texture2D" uid="uid://ksxdroscyssg" path="res://src/models/mixamo_humanoid-6bac3b266239b4a8a65c7d6cbb743269_UnderwearTexture.png" id="13_tm0a6"]
 [ext_resource type="Material" uid="uid://d71dlmjeqwpy" path="res://src/objects/player/player_material_underwear.tres" id="14_gxv2f"]
 [ext_resource type="AnimationLibrary" uid="uid://bw02x2mkpt6ww" path="res://src/animations/locomotion_pack.res" id="15_ff48y"]
 [ext_resource type="Script" path="res://src/objects/player/Jump.gd" id="16_8tvfs"]
 [ext_resource type="Script" path="res://src/objects/player/Animation.gd" id="16_hw1g1"]
+[ext_resource type="Script" path="res://src/objects/player/FootstepSound.gd" id="19_yhtbr"]
+[ext_resource type="AudioStream" uid="uid://c75hc30foow73" path="res://src/audio/sound/walking-on-a-wooden-floor.wav" id="21_fdi3a"]
+[ext_resource type="AudioStream" uid="uid://03ccvlyhyco1" path="res://src/audio/sound/carpet_footsteps.wav" id="22_vcr0o"]
+[ext_resource type="Script" path="res://src/objects/NoiseGenerator.gd" id="23_3hx3r"]
+[ext_resource type="Script" path="res://src/objects/player/TextureChanger.gd" id="23_rl1x5"]
+[ext_resource type="Material" uid="uid://clyvlx4tqmlah" path="res://src/objects/player/player_material_suit.tres" id="25_e80g0"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6wfcd"]
-shader = ExtResource("6_lcqfb")
-shader_parameter/color_depth = 5
-shader_parameter/dithering = true
-shader_parameter/resolution_scale = 4
+[sub_resource type="ViewportTexture" id="ViewportTexture_qu6lx"]
+viewport_path = NodePath("Modules/Camera/CanvasLayer/CustomAspectRatioContainer/DitherShaderContainer/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_76yqx"]
-shader = ExtResource("7_qdsc3")
-shader_parameter/alpha = 0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ju61w"]
+shader = ExtResource("11_8p7af")
+shader_parameter/colors = 24.0
+shader_parameter/dither = 0.5
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_s0fd4"]
+buffer_length = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nfhke"]
 resource_name = "Material"
@@ -669,7 +677,7 @@ bind/8/pose = Transform3D(-4.49101e-06, -100, 2.93553e-06, -100, -6.87775e-06, -
 animation = &"locomotion_pack/sitting"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3foy0"]
-animation = &"locomotion_pack/lying_down"
+animation = &"locomotion_pack/laying_idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kbpny"]
 animation = &"locomotion_pack/falling"
@@ -747,7 +755,7 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_lr6dj")
 blend_point_4/pos = Vector2(1, 0)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6uc4q"]
-graph_offset = Vector2(-244.67, 152.769)
+graph_offset = Vector2(83.6685, 271.76)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_kbpny")
 nodes/Animation/position = Vector2(0, 420)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_lnjq0")
@@ -771,6 +779,47 @@ script = ExtResource("1_4scu1")
 
 [node name="Modules" type="Node3D" parent="."]
 script = ExtResource("2_4313g")
+
+[node name="Pause" type="Node3D" parent="Modules"]
+script = ExtResource("4_5rdcv")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Modules/Pause"]
+layer = 2
+
+[node name="CustomAspectRatioContainer" type="AspectRatioContainer" parent="Modules/Pause/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.5
+script = ExtResource("10_55vfa")
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Modules/Pause/CanvasLayer/CustomAspectRatioContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.588235)
+
+[node name="MarginContainer" type="MarginContainer" parent="Modules/Pause/CanvasLayer/CustomAspectRatioContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Modules/Pause/CanvasLayer/CustomAspectRatioContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("7_8tfa6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Modules/Pause/CanvasLayer/CustomAspectRatioContainer/MarginContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Modules/Pause/CanvasLayer/CustomAspectRatioContainer/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Paused"
+horizontal_alignment = 1
+justification_flags = 171
+
+[node name="Button" type="Button" parent="Modules/Pause/CanvasLayer/CustomAspectRatioContainer/MarginContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "MAIN MENU"
 
 [node name="UI" type="Node3D" parent="Modules"]
 script = ExtResource("1_82t3q")
@@ -801,9 +850,6 @@ texture_under = ExtResource("5_laqk4")
 texture_progress = ExtResource("5_laqk4")
 tint_under = Color(0, 0, 0, 0.784314)
 
-[node name="MouseControl" type="Node3D" parent="Modules"]
-script = ExtResource("3_3it2g")
-
 [node name="WallAvoidanceModule" type="Node3D" parent="Modules" node_paths=PackedStringArray("camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.78458, 0)
 script = ExtResource("8_qi7ac")
@@ -828,11 +874,12 @@ target_position = Vector3(0, 0, -2)
 collision_mask = 5
 collide_with_areas = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Modules/Camera"]
-layer = 0
+[node name="CanvasLayer2" type="CanvasLayer" parent="Modules/Camera"]
+layer = 5
 
-[node name="ColorRect" type="ColorRect" parent="Modules/Camera/CanvasLayer"]
-visible = false
+[node name="FadeColorRect" type="ColorRect" parent="Modules/Camera/CanvasLayer2"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -841,47 +888,62 @@ grow_vertical = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="DitherShaderContainer" type="SubViewportContainer" parent="Modules/Camera/CanvasLayer"]
-material = SubResource("ShaderMaterial_6wfcd")
+[node name="CanvasLayer" type="CanvasLayer" parent="Modules/Camera"]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="Modules/Camera/CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-stretch = true
+color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="SubViewport" type="SubViewport" parent="Modules/Camera/CanvasLayer/DitherShaderContainer"]
-handle_input_locally = false
-size = Vector2i(1152, 648)
-render_target_update_mode = 4
-
-[node name="FadeShaderContainer" type="SubViewportContainer" parent="Modules/Camera/CanvasLayer/DitherShaderContainer/SubViewport"]
-material = SubResource("ShaderMaterial_76yqx")
+[node name="CustomAspectRatioContainer" type="AspectRatioContainer" parent="Modules/Camera/CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-stretch = true
+ratio = 1.5
+script = ExtResource("10_55vfa")
 metadata/_edit_use_anchors_ = true
 
-[node name="SubViewport" type="SubViewport" parent="Modules/Camera/CanvasLayer/DitherShaderContainer/SubViewport/FadeShaderContainer"]
+[node name="DitherShaderContainer" type="TextureRect" parent="Modules/Camera/CanvasLayer/CustomAspectRatioContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = SubResource("ViewportTexture_qu6lx")
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="Modules/Camera/CanvasLayer/CustomAspectRatioContainer/DitherShaderContainer"]
 handle_input_locally = false
-size = Vector2i(1152, 648)
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(360, 240)
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="Modules/Camera/CanvasLayer/DitherShaderContainer/SubViewport/FadeShaderContainer/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="Modules/Camera/CanvasLayer/CustomAspectRatioContainer/DitherShaderContainer/SubViewport"]
 cull_mask = 1048573
 current = true
 fov = 80.0
 script = ExtResource("3_b0ici")
 
+[node name="PosterizationShader" type="ColorRect" parent="Modules/Camera/CanvasLayer"]
+material = SubResource("ShaderMaterial_ju61w")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
 [node name="CameraRotation" type="Node3D" parent="Modules/Camera"]
 script = ExtResource("5_qofaq")
 
 [node name="HeadAttachement" type="BoneAttachment3D" parent="Modules"]
-transform = Transform3D(-0.999969, -0.00147915, -0.00774326, -0.00204169, 0.997319, 0.0731524, 0.00761429, 0.073166, -0.997291, 0.00676501, 1.61049, 0.133698)
+transform = Transform3D(-0.999981, 0.000129229, -0.00612067, -0.000323887, 0.99726, 0.0739733, 0.00611345, 0.0739738, -0.997241, 0.00693144, 1.6108, 0.135044)
 bone_name = "mixamorig_HeadTop_End"
 bone_idx = 6
 use_external_skeleton = true
@@ -894,7 +956,6 @@ script = ExtResource("5_370tb")
 script = ExtResource("4_51gfw")
 
 [node name="Run" type="Node3D" parent="Modules/Movement"]
-visible = false
 script = ExtResource("8_00s74")
 
 [node name="Jump" type="Node3D" parent="Modules/Movement"]
@@ -904,11 +965,47 @@ script = ExtResource("16_8tvfs")
 [node name="Gravity" type="Node3D" parent="Modules/Movement"]
 script = ExtResource("7_eew56")
 
+[node name="FootstepSound" type="Node3D" parent="Modules/Movement"]
+script = ExtResource("19_yhtbr")
+
+[node name="ApartmentAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Modules/Movement/FootstepSound"]
+stream = ExtResource("21_fdi3a")
+volume_db = -2.0
+max_db = 2.0
+pitch_scale = 1.25
+bus = &"SFX"
+
+[node name="OfficeAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Modules/Movement/FootstepSound"]
+stream = ExtResource("22_vcr0o")
+volume_db = -2.0
+max_db = 2.0
+pitch_scale = 1.25
+bus = &"SFX"
+
+[node name="NoiseGenerator" type="Node3D" parent="Modules/Movement"]
+script = ExtResource("1_82t3q")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Modules/Movement/NoiseGenerator"]
+stream = SubResource("AudioStreamGenerator_s0fd4")
+volume_db = -40.0
+autoplay = true
+bus = &"SFX"
+script = ExtResource("23_3hx3r")
+
+[node name="KopfStimme" type="Node3D" parent="Modules/Movement"]
+script = ExtResource("1_82t3q")
+
 [node name="Mesh" type="Node3D" parent="Modules"]
 script = ExtResource("1_82t3q")
 
 [node name="Root Scene" type="Node3D" parent="Modules/Mesh"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="TextureChanger" type="Node3D" parent="Modules/Mesh/Root Scene" node_paths=PackedStringArray("root_node")]
+script = ExtResource("23_rl1x5")
+materials = Array[BaseMaterial3D]([ExtResource("14_gxv2f"), ExtResource("25_e80g0")])
+root_node = NodePath("../RootNode/GeneralSkeleton")
+current_texture = 1
 
 [node name="RootNode" type="Node3D" parent="Modules/Mesh/Root Scene"]
 
@@ -919,43 +1016,43 @@ bones/0/name = "Hips"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.916736, -0.0781695)
 bones/0/enabled = true
-bones/0/position = Vector3(0.00837447, 0.570088, -0.230421)
-bones/0/rotation = Quaternion(-0.232372, -0.00890083, -0.0182872, 0.972414)
+bones/0/position = Vector3(0.00851767, 0.570205, -0.230564)
+bones/0/rotation = Quaternion(-0.232677, -0.00866659, -0.0179896, 0.972349)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Spine"
 bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.124662, 0.00161391)
 bones/1/enabled = true
 bones/1/position = Vector3(0, 0.124662, 0.00161391)
-bones/1/rotation = Quaternion(0.28555, 0.00139465, 0.0128737, 0.958276)
+bones/1/rotation = Quaternion(0.285247, 0.00128697, 0.0127092, 0.958369)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Chest"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.145439, 0.0018829)
 bones/2/enabled = true
 bones/2/position = Vector3(0, 0.145439, 0.0018829)
-bones/2/rotation = Quaternion(0.0146601, -0.00199465, 0.0165355, 0.999754)
+bones/2/rotation = Quaternion(0.0145701, -0.00200654, 0.0162709, 0.999759)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "UpperChest"
 bones/3/parent = 2
 bones/3/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.166216, 0.00215189)
 bones/3/enabled = true
 bones/3/position = Vector3(0, 0.166216, 0.00215189)
-bones/3/rotation = Quaternion(0.0146973, -0.000999631, 0.0166032, 0.999754)
+bones/3/rotation = Quaternion(0.0146063, -0.0010252, 0.0163391, 0.999759)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Neck"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.186993, 0.00242087)
 bones/4/enabled = true
 bones/4/position = Vector3(0, 0.186993, 0.00242087)
-bones/4/rotation = Quaternion(0.117218, 0.00290552, -0.0204443, 0.992892)
+bones/4/rotation = Quaternion(0.117365, 0.00283711, -0.0200138, 0.992883)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "Head"
 bones/5/parent = 4
 bones/5/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.174549, 0.010829)
 bones/5/enabled = true
 bones/5/position = Vector3(0, 0.174549, 0.010829)
-bones/5/rotation = Quaternion(-0.235853, 0.0100248, -0.0131647, 0.971648)
+bones/5/rotation = Quaternion(-0.235622, 0.00940988, -0.0121353, 0.971723)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "mixamorig_HeadTop_End"
 bones/6/parent = 5
@@ -969,28 +1066,28 @@ bones/7/parent = 3
 bones/7/rest = Transform3D(0, 1, 0, 0, 0, 1, 1, 0, 0, 0.0845675, 0.157521, 0.00273995)
 bones/7/enabled = true
 bones/7/position = Vector3(0.0845675, 0.157521, 0.00273995)
-bones/7/rotation = Quaternion(0.55456, 0.445559, 0.498046, -0.495874)
+bones/7/rotation = Quaternion(0.553317, 0.446735, 0.497845, -0.496406)
 bones/7/scale = Vector3(1, 1, 1)
 bones/8/name = "LeftUpperArm"
 bones/8/parent = 7
 bones/8/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0.000638181, 0.168985, -0.0599481)
 bones/8/enabled = true
 bones/8/position = Vector3(0.000638181, 0.168985, -0.0599481)
-bones/8/rotation = Quaternion(0.201123, 0.801708, -0.461772, -0.321839)
+bones/8/rotation = Quaternion(0.200387, 0.801315, -0.462938, -0.321603)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "LeftLowerArm"
 bones/9/parent = 8
 bones/9/rest = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -0.00974544, 0.320896, 0.000433262)
 bones/9/enabled = true
 bones/9/position = Vector3(-0.00974544, 0.320896, 0.000433262)
-bones/9/rotation = Quaternion(0.447606, -0.547402, 0.447606, 0.547402)
+bones/9/rotation = Quaternion(0.447824, -0.547224, 0.447824, 0.547223)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "LeftHand"
 bones/10/parent = 9
 bones/10/rest = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -0.00395532, 0.301266, 0.00324739)
 bones/10/enabled = true
 bones/10/position = Vector3(-0.00395532, 0.301266, 0.00324739)
-bones/10/rotation = Quaternion(-0.106805, 0.806776, 0.275505, 0.511667)
+bones/10/rotation = Quaternion(-0.106768, 0.806426, 0.275442, 0.512259)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "mixamorig_LeftHandIndex1"
 bones/11/parent = 10
@@ -1025,28 +1122,28 @@ bones/15/parent = 3
 bones/15/rest = Transform3D(0, -1, 0, 0, 0, 1, -1, 0, 0, -0.0845675, 0.157521, 0.00210178)
 bones/15/enabled = true
 bones/15/position = Vector3(-0.0845675, 0.157521, 0.00210178)
-bones/15/rotation = Quaternion(0.499538, -0.490122, -0.522233, -0.487355)
+bones/15/rotation = Quaternion(0.500407, -0.489132, -0.523401, -0.486203)
 bones/15/scale = Vector3(1, 1, 1)
 bones/16/name = "RightUpperArm"
 bones/16/parent = 15
 bones/16/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0.000638166, 0.168985, -0.059948)
 bones/16/enabled = true
 bones/16/position = Vector3(0.000638166, 0.168985, -0.059948)
-bones/16/rotation = Quaternion(-0.0410709, 0.811692, -0.55304, 0.183346)
+bones/16/rotation = Quaternion(-0.0407413, 0.812346, -0.552021, 0.183595)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/name = "RightLowerArm"
 bones/17/parent = 16
 bones/17/rest = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0.0126099, 0.320896, 0.000433042)
 bones/17/enabled = true
 bones/17/position = Vector3(0.0126099, 0.320896, 0.000433042)
-bones/17/rotation = Quaternion(0.486375, 0.513264, -0.486374, 0.513264)
+bones/17/rotation = Quaternion(0.48641, 0.51323, -0.48641, 0.51323)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "RightHand"
 bones/18/parent = 17
 bones/18/rest = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0.00395553, 0.301266, 0.00243936)
 bones/18/enabled = true
 bones/18/position = Vector3(0.00395553, 0.301266, 0.00243936)
-bones/18/rotation = Quaternion(-0.0684501, -0.858911, -0.134488, 0.489387)
+bones/18/rotation = Quaternion(-0.0682121, -0.858641, -0.134542, 0.489879)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/name = "mixamorig_RightHandIndex1"
 bones/19/parent = 18
@@ -1081,28 +1178,28 @@ bones/23/parent = 0
 bones/23/rest = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, 1, 0.10378, -0.0693069, -0.00130308)
 bones/23/enabled = true
 bones/23/position = Vector3(0.10378, -0.0693069, -0.00130308)
-bones/23/rotation = Quaternion(0.0523411, 0.488028, 0.870768, -0.0291858)
+bones/23/rotation = Quaternion(0.0522072, 0.487818, 0.870919, -0.0284204)
 bones/23/scale = Vector3(1, 1, 1)
 bones/24/name = "LeftLowerLeg"
 bones/24/parent = 23
 bones/24/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -0.0209801, 0.402048, 0.000466099)
 bones/24/enabled = true
 bones/24/position = Vector3(-0.0209801, 0.402048, 0.000466099)
-bones/24/rotation = Quaternion(-0.0356776, 0.693678, -0.719196, -0.0171774)
+bones/24/rotation = Quaternion(-0.0364594, 0.694327, -0.718519, -0.017652)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/name = "LeftFoot"
 bones/25/parent = 24
 bones/25/rest = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, -0.000316508, 0.347606, -0.00561648)
 bones/25/enabled = true
 bones/25/position = Vector3(-0.000316508, 0.347606, -0.00561648)
-bones/25/rotation = Quaternion(0.00808595, 0.69398, -0.719893, -0.00895574)
+bones/25/rotation = Quaternion(0.00672117, 0.694818, -0.719115, -0.0074406)
 bones/25/scale = Vector3(1, 1, 1)
 bones/26/name = "LeftToes"
 bones/26/parent = 25
 bones/26/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -0.0117364, 0.216473, -0.104634)
 bones/26/enabled = true
 bones/26/position = Vector3(-0.0117364, 0.216473, -0.104634)
-bones/26/rotation = Quaternion(6.26549e-05, 0.998553, 0.0532214, 0.00777255)
+bones/26/rotation = Quaternion(-1.40722e-05, 0.998574, 0.0529929, 0.00652404)
 bones/26/scale = Vector3(1, 1, 1)
 bones/27/name = "mixamorig_LeftToe_End"
 bones/27/parent = 26
@@ -1116,28 +1213,28 @@ bones/28/parent = 0
 bones/28/rest = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, 1, -0.10378, -0.0693069, 0.0016642)
 bones/28/enabled = true
 bones/28/position = Vector3(-0.10378, -0.0693069, 0.0016642)
-bones/28/rotation = Quaternion(-0.129473, 0.471873, 0.871155, 0.0407694)
+bones/28/rotation = Quaternion(-0.129691, 0.468686, 0.872819, 0.0412351)
 bones/28/scale = Vector3(1, 1, 1)
 bones/29/name = "RightLowerLeg"
 bones/29/parent = 28
 bones/29/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0.0209801, 0.402048, -0.00118023)
 bones/29/enabled = true
 bones/29/position = Vector3(0.0209801, 0.402048, -0.00118023)
-bones/29/rotation = Quaternion(0.031046, 0.666362, -0.744968, 0.00442638)
+bones/29/rotation = Quaternion(0.0299774, 0.668302, -0.743267, 0.00517706)
 bones/29/scale = Vector3(1, 1, 1)
 bones/30/name = "RightFoot"
 bones/30/parent = 29
 bones/30/rest = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, 0.000316514, 0.347605, -0.0160638)
 bones/30/enabled = true
 bones/30/position = Vector3(0.000316514, 0.347605, -0.0160638)
-bones/30/rotation = Quaternion(-0.0397726, 0.644547, -0.76231, 0.0431408)
+bones/30/rotation = Quaternion(-0.0393447, 0.639194, -0.766848, 0.0427446)
 bones/30/scale = Vector3(1, 1, 1)
 bones/31/name = "RightToes"
 bones/31/parent = 30
 bones/31/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0.0117363, 0.205875, -0.104625)
 bones/31/enabled = true
 bones/31/position = Vector3(0.0117363, 0.205875, -0.104625)
-bones/31/rotation = Quaternion(-0.000425766, 0.998584, 0.0500115, -0.0181349)
+bones/31/rotation = Quaternion(-0.000314862, 0.999012, 0.0426487, -0.0124914)
 bones/31/scale = Vector3(1, 1, 1)
 bones/32/name = "mixamorig_RightToe_End"
 bones/32/parent = 31

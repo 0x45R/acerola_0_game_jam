@@ -63,10 +63,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, -0.4)
 script = ExtResource("4_trxx8")
 horizontal_clamp = Vector2(-0.1, 0.1)
 state = 4
-custom_camera_offset = Vector3(0, 0.3, 0)
+custom_camera_offset = Vector3(0, 0.25, -0.15)
 
 [node name="SittingMarker" type="Marker3D" parent="RootModule/InteractWithProp/Sleep" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.536573, -0.704444)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0685474, 0.295556)
 
 [node name="StandingMarker" type="Marker3D" parent="RootModule/InteractWithProp/Sleep" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.7)

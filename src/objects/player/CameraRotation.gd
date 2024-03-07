@@ -7,10 +7,12 @@ var rotation_axis = Vector2(1,1)
 const MOUSE_SENSITIVITY = 3
 
 func _ready():
-	get_module_root().get_node("MouseControl").mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _input(event):
 	if event is InputEventMouseMotion:
+		if get_module_root().get_node("Pause").paused:
+			return
 		var mouse_input = event.relative * -0.001 * MOUSE_SENSITIVITY
 		entity.rotate_y(mouse_input.x*rotation_axis.x)
 		module.rotate_x(mouse_input.y*rotation_axis.y)

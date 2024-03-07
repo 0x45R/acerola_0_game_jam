@@ -1,31 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://bkquj2j680g7v"]
+[gd_scene load_steps=22 format=3 uid="uid://bkquj2j680g7v"]
 
 [ext_resource type="PackedScene" uid="uid://bss3uv07yjij6" path="res://src/models/cabinet.blend" id="1_jvx33"]
 [ext_resource type="Script" path="res://src/RootModule.gd" id="2_8twme"]
 [ext_resource type="Script" path="res://src/objects/props/InteractWithProp.gd" id="3_msl43"]
+[ext_resource type="Script" path="res://src/objects/props/PlaySoundOnSuccessfulInteraction.gd" id="4_bs0gb"]
+[ext_resource type="Script" path="res://src/objects/props/Openable.gd" id="4_el4a2"]
+[ext_resource type="AudioStream" uid="uid://cowcusu2t8yw3" path="res://src/audio/sound/cabinet-door-open.mp3" id="5_x5yns"]
+[ext_resource type="AudioStream" uid="uid://b8q4uog3c8q2e" path="res://src/audio/sound/cabinet-door-close.mp3" id="6_k1jsf"]
+[ext_resource type="Script" path="res://src/objects/props/PlaySoundOnFailedInteraction.gd" id="7_wf8kl"]
+[ext_resource type="AudioStream" uid="uid://eknaqjd8ewnk" path="res://src/audio/sound/door-locked.mp3" id="8_vpy4c"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_7ebjd"]
 data = PackedVector3Array(0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.375, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.375, 0.5, -0.5, 0.375, 0.5, -0.5, 0.5, 0.5, -0.5, 0.375, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.375, 0.5, -0.5, 0.375, -0.5, -0.5, 0.5, -0.5, -0.45, -0.5083, -0.45, 0.45, -0.5083, 0.45, 0.45, -0.5083, -0.45, -0.45, -0.5083, -0.45, -0.45, -0.5083, 0.45, 0.45, -0.5083, 0.45, 0.5, 0.375, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.375, -0.5, 0.5, 0.375, 0.5, 0.5, 0.5, 0.5, -0.5, 0.375, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.375, -0.5, 0.5, 0.375, -0.5, 0.5, 0.5, -0.5, -0.45, -0.5083, -0.45, 0.45, -0.0583, -0.45, -0.45, -0.0583, -0.45, -0.45, -0.5083, -0.45, 0.45, -0.5083, -0.45, 0.45, -0.0583, -0.45, 0.45, -0.5083, -0.45, 0.45, -0.0583, 0.45, 0.45, -0.0583, -0.45, 0.45, -0.5083, -0.45, 0.45, -0.5083, 0.45, 0.45, -0.0583, 0.45, -0.45, -0.5083, 0.45, -0.45, -0.0583, -0.45, -0.45, -0.0583, 0.45, -0.45, -0.5083, 0.45, -0.45, -0.5083, -0.45, -0.45, -0.0583, -0.45, -0.45, -0.0583, -0.45, 0.45, 0.3667, -0.45, -0.45, 0.3667, -0.45, -0.45, -0.0583, -0.45, 0.45, -0.0583, -0.45, 0.45, 0.3667, -0.45, 0.45, -0.0583, -0.45, 0.45, 0.3667, 0.45, 0.45, 0.3667, -0.45, 0.45, -0.0583, -0.45, 0.45, -0.0583, 0.45, 0.45, 0.3667, 0.45, -0.45, -0.0583, 0.45, -0.45, 0.3667, -0.45, -0.45, 0.3667, 0.45, -0.45, -0.0583, 0.45, -0.45, -0.0583, -0.45, -0.45, 0.3667, -0.45, -0.45, 0.3667, -0.45, 0.5, 0.375, -0.5, -0.5, 0.375, -0.5, -0.45, 0.3667, -0.45, 0.45, 0.3667, -0.45, 0.5, 0.375, -0.5, 0.45, 0.3667, -0.45, 0.5, 0.375, 0.5, 0.5, 0.375, -0.5, 0.45, 0.3667, -0.45, 0.45, 0.3667, 0.45, 0.5, 0.375, 0.5, -0.45, 0.3667, 0.45, -0.5, 0.375, -0.5, -0.5, 0.375, 0.5, -0.45, 0.3667, 0.45, -0.45, 0.3667, -0.45, -0.5, 0.375, -0.5, 0.45, 0.3667, 0.45, -0.5, 0.375, 0.5, 0.5, 0.375, 0.5, 0.45, 0.3667, 0.45, -0.45, 0.3667, 0.45, -0.5, 0.375, 0.5, -0.4, -0.1183, 0.45, -0.45, -0.5083, 0.45, -0.45, -0.0583, 0.45, 0.45, -0.5083, 0.45, 0.4, -0.1183, 0.45, 0.45, -0.0583, 0.45, 0.45, -0.5083, 0.45, 0.4, -0.4433, 0.45, 0.4, -0.1183, 0.45, -0.4, -0.4433, 0.45, -0.45, -0.5083, 0.45, -0.4, -0.1183, 0.45, 0.45, -0.5083, 0.45, -0.4, -0.4433, 0.45, 0.4, -0.4433, 0.45, -0.45, -0.5083, 0.45, -0.4, -0.4433, 0.45, 0.45, -0.5083, 0.45, 0.4, -0.1183, 0.45, -0.45, -0.0583, 0.45, 0.45, -0.0583, 0.45, 0.4, -0.1183, 0.45, -0.4, -0.1183, 0.45, -0.45, -0.0583, 0.45, -0.45, 0.3667, 0.45, -0.4, -0.0083, 0.45, -0.45, -0.0583, 0.45, -0.45, 0.3667, 0.45, -0.4, 0.3167, 0.45, -0.4, -0.0083, 0.45, 0.4, -0.0083, 0.45, -0.45, -0.0583, 0.45, -0.4, -0.0083, 0.45, 0.45, 0.3667, 0.45, -0.4, 0.3167, 0.45, -0.45, 0.3667, 0.45, 0.45, 0.3667, 0.45, 0.4, 0.3167, 0.45, -0.4, 0.3167, 0.45, 0.4, -0.0083, 0.45, 0.45, -0.0583, 0.45, -0.45, -0.0583, 0.45, 0.45, 0.3667, 0.45, 0.4, -0.0083, 0.45, 0.4, 0.3167, 0.45, 0.45, -0.0583, 0.45, 0.4, -0.0083, 0.45, 0.45, 0.3667, 0.45, 0.4, -0.0083, 0.45, -0.4, -0.0083, -0.35, 0.4, -0.0083, -0.35, 0.4, -0.0083, 0.45, -0.4, -0.0083, 0.45, -0.4, -0.0083, -0.35, 0.4, -0.0083, -0.35, -0.4, 0.3117, -0.35, 0.4, 0.3117, -0.35, 0.4, -0.0083, -0.35, -0.4, -0.0083, -0.35, -0.4, 0.3117, -0.35, 0.4, -0.0083, 0.45, 0.4, 0.3117, -0.35, 0.4, 0.3167, 0.45, 0.4, -0.0083, 0.45, 0.4, -0.0083, -0.35, 0.4, 0.3117, -0.35, -0.4, 0.3167, 0.45, -0.4, -0.0083, -0.35, -0.4, -0.0083, 0.45, -0.4, 0.3167, 0.45, -0.4, 0.3117, -0.35, -0.4, -0.0083, -0.35, 0.4, -0.4433, 0.45, -0.4, -0.4433, -0.35, 0.4, -0.4433, -0.35, 0.4, -0.4433, 0.45, -0.4, -0.4433, 0.45, -0.4, -0.4433, -0.35, 0.4, -0.4433, -0.35, -0.4, -0.1233, -0.35, 0.4, -0.1233, -0.35, 0.4, -0.4433, -0.35, -0.4, -0.4433, -0.35, -0.4, -0.1233, -0.35, 0.4, -0.4433, 0.45, 0.4, -0.1233, -0.35, 0.4, -0.1183, 0.45, 0.4, -0.4433, 0.45, 0.4, -0.4433, -0.35, 0.4, -0.1233, -0.35, -0.4, -0.1183, 0.45, -0.4, -0.4433, -0.35, -0.4, -0.4433, 0.45, -0.4, -0.1183, 0.45, -0.4, -0.1233, -0.35, -0.4, -0.4433, -0.35, 0.4, 0.3167, 0.45, -0.4, 0.3117, -0.35, -0.4, 0.3167, 0.45, 0.4, 0.3167, 0.45, 0.4, 0.3117, -0.35, -0.4, 0.3117, -0.35, -0.4, -0.1233, -0.35, 0.4, -0.1183, 0.45, 0.4, -0.1233, -0.35, -0.4, -0.1233, -0.35, -0.4, -0.1183, 0.45, 0.4, -0.1183, 0.45)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4uarq"]
 size = Vector3(0.8, 0.3, 0.15)
-
-[sub_resource type="GDScript" id="GDScript_mxvhq"]
-script/source = "extends BaseModule
-
-var animation_player: AnimationPlayer
-var open = false
-
-func _interacted(_player):
-	if animation_player.is_playing():
-		return
-	open = !open
-	animation_player.current_animation = \"open\" if open else \"closed\"
-
-func _ready():
-	module.interacted.connect(_interacted)
-	animation_player = get_module_root().get_parent().get_node(\"AnimationPlayer\")
-"
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fura1"]
 data = PackedVector3Array(-0.4, -0.1583, -0.04, 0.4, -0.1583, -0.0009, 0.4, -0.1583, -0.04, -0.4, -0.1583, -0.04, -0.4, -0.1583, -0.0009, 0.4, -0.1583, -0.0009, -0.4, 0.1667, -0.04, -0.4, -0.1583, -0.0009, -0.4, -0.1583, -0.04, -0.4, 0.1667, -0.04, -0.4, 0.1667, -0.0009, -0.4, -0.1583, -0.0009, 0.4, -0.1583, -0.0009, -0.4, 0.1667, -0.0009, 0.4, 0.1667, -0.0009, 0.4, -0.1583, -0.0009, -0.4, -0.1583, -0.0009, -0.4, 0.1667, -0.0009, 0.4, 0.1667, -0.04, -0.4, 0.1667, -0.0009, -0.4, 0.1667, -0.04, 0.4, 0.1667, -0.04, 0.4, 0.1667, -0.0009, -0.4, 0.1667, -0.0009, 0.4, -0.1583, -0.04, 0.4, 0.1667, -0.0009, 0.4, 0.1667, -0.04, 0.4, -0.1583, -0.04, 0.4, -0.1583, -0.0009, 0.4, 0.1667, -0.0009, 0.4, -0.1583, -0.04, -0.4, -0.1583, -0.84, -0.4, -0.1583, -0.04, 0.4, -0.1583, -0.04, 0.4, -0.1583, -0.84, -0.4, -0.1583, -0.84, 0.4, -0.1583, -0.84, -0.4, 0.1617, -0.84, -0.4, -0.1583, -0.84, 0.4, -0.1583, -0.84, 0.4, 0.1617, -0.84, -0.4, 0.1617, -0.84, 0.4, -0.1583, -0.04, 0.4, 0.1617, -0.84, 0.4, -0.1583, -0.84, 0.4, -0.1583, -0.04, 0.4, 0.1667, -0.04, 0.4, 0.1617, -0.84, -0.4, 0.1667, -0.04, -0.4, -0.1583, -0.84, -0.4, 0.1617, -0.84, -0.4, 0.1667, -0.04, -0.4, -0.1583, -0.04, -0.4, -0.1583, -0.84, -0.3965, -0.1548, -0.04, 0.3971, -0.1554, -0.0038, -0.3971, -0.1554, -0.0038, -0.3965, -0.1548, -0.04, 0.3965, -0.1548, -0.04, 0.3971, -0.1554, -0.0038, -0.3955, 0.1644, -0.04, -0.3971, -0.1554, -0.0038, -0.3971, 0.1638, -0.0038, -0.3955, 0.1644, -0.04, -0.3965, -0.1548, -0.04, -0.3971, -0.1554, -0.0038, 0.3971, -0.1554, -0.0038, -0.3971, 0.1638, -0.0038, -0.3971, -0.1554, -0.0038, 0.3971, -0.1554, -0.0038, 0.3971, 0.1638, -0.0038, -0.3971, 0.1638, -0.0038, 0.3955, 0.1644, -0.04, -0.3971, 0.1638, -0.0038, 0.3971, 0.1638, -0.0038, 0.3955, 0.1644, -0.04, -0.3955, 0.1644, -0.04, -0.3971, 0.1638, -0.0038, 0.3965, -0.1548, -0.04, 0.3971, 0.1638, -0.0038, 0.3971, -0.1554, -0.0038, 0.3965, -0.1548, -0.04, 0.3955, 0.1644, -0.04, 0.3971, 0.1638, -0.0038, 0.3965, -0.1548, -0.04, -0.3971, -0.1554, -0.8371, 0.3971, -0.1554, -0.8371, 0.3965, -0.1548, -0.04, -0.3965, -0.1548, -0.04, -0.3971, -0.1554, -0.8371, 0.3971, -0.1554, -0.8371, -0.3965, 0.1617, -0.8365, 0.3964, 0.1617, -0.8365, 0.3971, -0.1554, -0.8371, -0.3971, -0.1554, -0.8371, -0.3965, 0.1617, -0.8365, 0.3965, -0.1548, -0.04, 0.3964, 0.1617, -0.8365, 0.3955, 0.1644, -0.04, 0.3965, -0.1548, -0.04, 0.3971, -0.1554, -0.8371, 0.3964, 0.1617, -0.8365, -0.3955, 0.1644, -0.04, -0.3971, -0.1554, -0.8371, -0.3965, -0.1548, -0.04, -0.3955, 0.1644, -0.04, -0.3965, 0.1617, -0.8365, -0.3971, -0.1554, -0.8371, -0.4, 0.1667, -0.04, 0.3955, 0.1644, -0.04, 0.4, 0.1667, -0.04, -0.4, 0.1667, -0.04, -0.3955, 0.1644, -0.04, 0.3955, 0.1644, -0.04, 0.4, 0.1617, -0.84, -0.3965, 0.1617, -0.8365, -0.4, 0.1617, -0.84, 0.4, 0.1617, -0.84, 0.3964, 0.1617, -0.8365, -0.3965, 0.1617, -0.8365, 0.4, 0.1667, -0.04, 0.3964, 0.1617, -0.8365, 0.4, 0.1617, -0.84, 0.4, 0.1667, -0.04, 0.3955, 0.1644, -0.04, 0.3964, 0.1617, -0.8365, -0.4, 0.1617, -0.84, -0.3955, 0.1644, -0.04, -0.4, 0.1667, -0.04, -0.4, 0.1617, -0.84, -0.3965, 0.1617, -0.8365, -0.3955, 0.1644, -0.04)
@@ -158,7 +147,28 @@ collision_mask = 4
 shape = SubResource("BoxShape3D_4uarq")
 
 [node name="Shelf" type="Node3D" parent="TopShelf/RootModule/InteractWithProp" index="1"]
-script = SubResource("GDScript_mxvhq")
+script = ExtResource("4_el4a2")
+
+[node name="PlaySoundOnSuccessfulInteraction" type="Node3D" parent="TopShelf/RootModule/InteractWithProp" index="2"]
+script = ExtResource("4_bs0gb")
+
+[node name="OpenAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TopShelf/RootModule/InteractWithProp/PlaySoundOnSuccessfulInteraction" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 0, 0)
+stream = ExtResource("5_x5yns")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="CloseAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TopShelf/RootModule/InteractWithProp/PlaySoundOnSuccessfulInteraction" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 0, 0)
+stream = ExtResource("6_k1jsf")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="PlaySoundOnFailedInteraction" type="Node3D" parent="TopShelf/RootModule/InteractWithProp" index="3"]
+script = ExtResource("7_wf8kl")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TopShelf/RootModule/InteractWithProp/PlaySoundOnFailedInteraction" index="0"]
+stream = ExtResource("8_vpy4c")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TopShelf/TopMesh" index="0"]
 
@@ -184,7 +194,28 @@ collision_mask = 4
 shape = SubResource("BoxShape3D_4uarq")
 
 [node name="Shelf" type="Node3D" parent="BottomShelf/RootModule/InteractWithProp" index="1"]
-script = SubResource("GDScript_mxvhq")
+script = ExtResource("4_el4a2")
+
+[node name="PlaySoundOnSuccessfulInteraction" type="Node3D" parent="BottomShelf/RootModule/InteractWithProp" index="2"]
+script = ExtResource("4_bs0gb")
+
+[node name="OpenAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="BottomShelf/RootModule/InteractWithProp/PlaySoundOnSuccessfulInteraction" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 0, 0)
+stream = ExtResource("5_x5yns")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="CloseAudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="BottomShelf/RootModule/InteractWithProp/PlaySoundOnSuccessfulInteraction" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 0, 0)
+stream = ExtResource("6_k1jsf")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="PlaySoundOnFailedInteraction" type="Node3D" parent="BottomShelf/RootModule/InteractWithProp" index="3"]
+script = ExtResource("7_wf8kl")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="BottomShelf/RootModule/InteractWithProp/PlaySoundOnFailedInteraction" index="0"]
+stream = ExtResource("8_vpy4c")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="BottomShelf/BottomMesh" index="0"]
 

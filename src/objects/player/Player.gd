@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var remote_input_vector: Vector2
 @export var gravity_force: Vector3
 @export var frozen: bool = false
+
 func _physics_process(delta):
 	if frozen:
 		return

@@ -3,8 +3,13 @@ extends BaseModule
 @export var run_speed = 7
 
 func _physics_process(delta):
+	if (module.state == module.STATE.Sitting or module.state == module.STATE.Sleeping):
+		return
+	if get_module_root().get_node("Pause").paused:
+		return
 	if Input.is_action_pressed("move_run"):
 		module.state = module.STATE.Running
+
 		var input_vector = Input.get_vector("move_left","move_right","move_forward","move_backward").normalized() 
 		var direction = Vector3(input_vector.x, 0, input_vector.y)
 		entity.remote_input_vector = input_vector

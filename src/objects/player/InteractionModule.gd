@@ -5,6 +5,8 @@ extends BaseModule
 var current_time: float = 0
 
 func _process(delta):	
+	if get_module_root().get_node("Pause").paused:
+		return
 	raycast.force_raycast_update()
 	var collider = raycast.get_collider()
 	interaction_bar.value = 0

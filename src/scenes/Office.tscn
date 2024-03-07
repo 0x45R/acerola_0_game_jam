@@ -1,13 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://mgeequ0mjbag"]
+[gd_scene load_steps=13 format=3 uid="uid://mgeequ0mjbag"]
 
 [ext_resource type="Script" path="res://src/RootModule.gd" id="2_v7aai"]
-[ext_resource type="Script" path="res://src/BaseModule.gd" id="3_xlc37"]
+[ext_resource type="Script" path="res://src/objects/progression/ProgressionManager.gd" id="4_xp3rb"]
+[ext_resource type="Script" path="res://src/objects/progression/requirements/WakeUpRequirement.gd" id="5_q0s6h"]
+[ext_resource type="Script" path="res://src/ui/CustomAspectRatio.gd" id="7_8k1pw"]
+[ext_resource type="Material" uid="uid://cgmmqrng2an4" path="res://src/materials/alt-concrete.tres" id="8_5mpg7"]
+[ext_resource type="Material" uid="uid://d1th0ol8u1shl" path="res://src/materials/carpet.tres" id="8_7mk6s"]
+[ext_resource type="Theme" uid="uid://de0sidstciui4" path="res://src/ui/themes/theme.tres" id="8_e8lxc"]
+[ext_resource type="Script" path="res://src/objects/props/GenerateCubicles.gd" id="9_kyihl"]
+[ext_resource type="PackedScene" uid="uid://mg2iahrnvdn2" path="res://src/objects/props/single_workstation.tscn" id="10_sxpfx"]
 [ext_resource type="PackedScene" uid="uid://d2edy00f6yd5d" path="res://src/objects/player/Player.tscn" id="11_b2tt2"]
 
 [sub_resource type="Environment" id="Environment_jyysf"]
 background_mode = 1
-background_color = Color(0.34902, 0.34902, 0.34902, 1)
-background_energy_multiplier = 0.75
+background_color = Color(0.776471, 0.776471, 0.776471, 1)
 tonemap_mode = 2
 glow_enabled = true
 glow_blend_mode = 0
@@ -21,11 +27,239 @@ volumetric_fog_enabled = true
 script = ExtResource("2_v7aai")
 
 [node name="QuestManager" type="Node3D" parent="Modules"]
-script = ExtResource("3_xlc37")
+script = ExtResource("4_xp3rb")
+
+[node name="GoToYourCubicleRequirement" type="Node3D" parent="Modules/QuestManager"]
+script = ExtResource("5_q0s6h")
+description = "Print an efficency list"
+failed_message = "You cannot leave now."
+
+[node name="WorkRequirement" type="Node3D" parent="Modules/QuestManager" node_paths=PackedStringArray("requirements")]
+script = ExtResource("5_q0s6h")
+requirements = [NodePath("../GoToYourCubicleRequirement")]
+description = "Work, get rid of abberations"
+failed_message = "You cannot leave now."
+
+[node name="ReturnHomeRequirement" type="Node3D" parent="Modules/QuestManager" node_paths=PackedStringArray("requirements")]
+script = ExtResource("5_q0s6h")
+requirements = [NodePath("../WorkRequirement")]
+description = "Return home"
+failed_message = "Return home"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Modules/QuestManager"]
+
+[node name="CustomAspectRatioContainer" type="AspectRatioContainer" parent="Modules/QuestManager/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.5
+script = ExtResource("7_8k1pw")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Modules/QuestManager/CanvasLayer/CustomAspectRatioContainer"]
+layout_mode = 2
+theme = ExtResource("8_e8lxc")
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+metadata/_edit_use_anchors_ = true
+
+[node name="CurrentRequirement" type="Label" parent="Modules/QuestManager/CanvasLayer/CustomAspectRatioContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="Modules/QuestManager/CanvasLayer/CustomAspectRatioContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Modules/QuestManager/CanvasLayer/CustomAspectRatioContainer/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 64
+
+[node name="RequirementFailed" type="Label" parent="Modules/QuestManager/CanvasLayer/CustomAspectRatioContainer/MarginContainer/CenterContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 16)
+layout_mode = 2
+horizontal_alignment = 1
 
 [node name="Player" parent="." instance=ExtResource("11_b2tt2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.92898, 0.026762, 9.64485)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, 28.1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jyysf")
 camera_attributes = SubResource("CameraAttributesPractical_t0jup")
+
+[node name="Building" type="Node3D" parent="."]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2, 29.9)
+use_collision = true
+size = Vector3(53, 4, 1)
+material = ExtResource("8_5mpg7")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, -26.5)
+use_collision = true
+size = Vector3(54, 4, 1)
+material = ExtResource("8_5mpg7")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Building"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 27.5, 2, 2.2)
+use_collision = true
+size = Vector3(58.6, 4, 1)
+material = ExtResource("8_5mpg7")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Building"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -25.5, 2, 1.3)
+use_collision = true
+size = Vector3(58.8, 4, 1)
+material = ExtResource("8_5mpg7")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(60, 1, 60)
+material = ExtResource("8_7mk6s")
+
+[node name="CubicleRow" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 24)
+script = ExtResource("9_kyihl")
+offset = Vector3(1.7, 0, 0)
+cubicle = ExtResource("10_sxpfx")
+amount = 9
+
+[node name="A1" type="Node3D" parent="CubicleRow" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 0, 0, 0)
+
+[node name="A2" type="Node3D" parent="CubicleRow" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 1.7, 0, 0)
+
+[node name="A3" type="Node3D" parent="CubicleRow" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 3.4, 0, 0)
+
+[node name="A4" type="Node3D" parent="CubicleRow" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 5.1, 0, 0)
+
+[node name="A5" type="Node3D" parent="CubicleRow" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 6.8, 0, 0)
+
+[node name="A6" type="Node3D" parent="CubicleRow" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 8.5, 0, 0)
+
+[node name="A7" type="Node3D" parent="CubicleRow" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 10.2, 0, 0)
+
+[node name="A8" type="Node3D" parent="CubicleRow" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 11.9, 0, 0)
+
+[node name="A9" type="Node3D" parent="CubicleRow" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 13.6, 0, 0)
+
+[node name="CubicleRow2" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 16.65, 0, 24)
+script = ExtResource("9_kyihl")
+row_name = "B"
+offset = Vector3(1.7, 0, 0)
+cubicle = ExtResource("10_sxpfx")
+amount = 9
+
+[node name="B1" type="Node3D" parent="CubicleRow2" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 0, 0, 0)
+
+[node name="B2" type="Node3D" parent="CubicleRow2" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 1.7, 0, 0)
+
+[node name="B3" type="Node3D" parent="CubicleRow2" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 3.4, 0, 0)
+
+[node name="B4" type="Node3D" parent="CubicleRow2" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 5.1, 0, 0)
+
+[node name="B5" type="Node3D" parent="CubicleRow2" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 6.8, 0, 0)
+
+[node name="B6" type="Node3D" parent="CubicleRow2" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 8.5, 0, 0)
+
+[node name="B7" type="Node3D" parent="CubicleRow2" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 10.2, 0, 0)
+
+[node name="B8" type="Node3D" parent="CubicleRow2" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 11.9, 0, 0)
+
+[node name="B9" type="Node3D" parent="CubicleRow2" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 13.6, 0, 0)
+
+[node name="CubicleRow3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 17)
+script = ExtResource("9_kyihl")
+row_name = "C"
+offset = Vector3(1.7, 0, 0)
+cubicle = ExtResource("10_sxpfx")
+amount = 9
+
+[node name="C1" type="Node3D" parent="CubicleRow3" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 0, 0, 0)
+
+[node name="C2" type="Node3D" parent="CubicleRow3" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 1.7, 0, 0)
+
+[node name="C3" type="Node3D" parent="CubicleRow3" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 3.4, 0, 0)
+
+[node name="C4" type="Node3D" parent="CubicleRow3" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 5.1, 0, 0)
+
+[node name="C5" type="Node3D" parent="CubicleRow3" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 6.8, 0, 0)
+
+[node name="C6" type="Node3D" parent="CubicleRow3" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 8.5, 0, 0)
+
+[node name="C7" type="Node3D" parent="CubicleRow3" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 10.2, 0, 0)
+
+[node name="C8" type="Node3D" parent="CubicleRow3" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 11.9, 0, 0)
+
+[node name="C9" type="Node3D" parent="CubicleRow3" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 13.6, 0, 0)
+
+[node name="CubicleRow4" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 16.65, 0, 17)
+script = ExtResource("9_kyihl")
+row_name = "D"
+offset = Vector3(1.7, 0, 0)
+cubicle = ExtResource("10_sxpfx")
+amount = 9
+
+[node name="D1" type="Node3D" parent="CubicleRow4" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 0, 0, 0)
+
+[node name="D2" type="Node3D" parent="CubicleRow4" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 1.7, 0, 0)
+
+[node name="D3" type="Node3D" parent="CubicleRow4" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 3.4, 0, 0)
+
+[node name="D4" type="Node3D" parent="CubicleRow4" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 5.1, 0, 0)
+
+[node name="D5" type="Node3D" parent="CubicleRow4" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 6.8, 0, 0)
+
+[node name="D6" type="Node3D" parent="CubicleRow4" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 8.5, 0, 0)
+
+[node name="D7" type="Node3D" parent="CubicleRow4" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 10.2, 0, 0)
+
+[node name="D8" type="Node3D" parent="CubicleRow4" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 11.9, 0, 0)
+
+[node name="D9" type="Node3D" parent="CubicleRow4" instance=ExtResource("10_sxpfx")]
+transform = Transform3D(5.76205e-08, 0, 1, 0, 1, 0, -1, 0, 5.76205e-08, 13.6, 0, 0)
