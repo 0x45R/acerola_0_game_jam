@@ -1,11 +1,16 @@
 extends Node3D
 
+@onready var audio_stream_player = $AudioStreamPlayer
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+var time_left = 25
 
+func _play_voice():
+	if not audio_stream_player.playing:
+		audio_stream_player.play()
+		time_left = randf_range(60,120)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	time_left -= delta
+	if time_left <= 0:
+		_play_voice()
+	

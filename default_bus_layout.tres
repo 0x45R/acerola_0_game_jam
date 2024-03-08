@@ -1,4 +1,9 @@
-[gd_resource type="AudioBusLayout" format=3 uid="uid://dx6awxetbwqqa"]
+[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://dx6awxetbwqqa"]
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_lolkn"]
+resource_name = "Reverb"
+room_size = 0.25
+spread = 0.5
 
 [resource]
 bus/1/name = &"Music"
@@ -13,3 +18,5 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectReverb_lolkn")
+bus/2/effect/0/enabled = false

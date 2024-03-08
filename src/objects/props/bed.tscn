@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c85xtcwdcl0iv"]
+[gd_scene load_steps=13 format=3 uid="uid://c85xtcwdcl0iv"]
 
 [ext_resource type="PackedScene" uid="uid://07oyx2rku06a" path="res://src/models/bed.blend" id="1_sb0xh"]
 [ext_resource type="Script" path="res://src/RootModule.gd" id="2_guduk"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://src/objects/progression/requirements/ReverseLockInteraction.gd" id="4_kbyp8"]
 [ext_resource type="Script" path="res://src/objects/props/Bed.gd" id="4_trxx8"]
 [ext_resource type="Script" path="res://src/objects/progression/requirements/FulfillRequirementOnInteraction.gd" id="5_sl0on"]
+[ext_resource type="Theme" uid="uid://de0sidstciui4" path="res://src/ui/themes/theme.tres" id="7_j2p7k"]
+[ext_resource type="AudioStream" uid="uid://omgc2d0s1dq8" path="res://src/audio/sound/Abberation, definition.wav" id="7_yjwuu"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_cac6c"]
 data = PackedVector3Array(0.7375, 0.1463, 1.4839, -0.75, 0.15, 1.5, -0.7375, 0.1463, 1.4839, 0.7375, 0.1463, 1.4839, 0.75, 0.15, 1.5, -0.75, 0.15, 1.5, 0.7375, 0.1463, 0.7419, 0.75, 0.15, 1.5, 0.7375, 0.1463, 1.4839, 0.7375, 0.1463, 0.7419, 0.75, 0.15, 0.75, 0.75, 0.15, 1.5, -0.7375, 0.1463, -1.484, 0.75, 0.15, -1.5, 0.7375, 0.1463, -1.484, -0.7375, 0.1463, -1.484, -0.75, 0.15, -1.5, 0.75, 0.15, -1.5, -0.7375, 0.1463, 0, -0.75, 0.15, -1.5, -0.7375, 0.1463, -1.484, -0.7375, 0.1463, 0, -0.75, 0.15, 0, -0.75, 0.15, -1.5, 0.7375, 0.1463, 0, 0.7375, 0.2374, -1.484, 0.7375, 0.1463, -1.484, 0.7375, 0.1463, 0, 0.7375, 0.2374, 0, 0.7375, 0.2374, -1.484, 0.631, 0.3414, 0, -0.631, 0.3414, -1.3811, 0.631, 0.3414, -1.3811, 0.631, 0.3414, 0, -0.631, 0.3414, 0, -0.631, 0.3414, -1.3811, 0.7375, 0.1463, -1.484, -0.7375, 0.2374, -1.484, -0.7375, 0.1463, -1.484, 0.7375, 0.1463, -1.484, 0.7375, 0.2374, -1.484, -0.7375, 0.2374, -1.484, -0.7375, 0.1463, 0.7419, -0.7375, 0.2374, 1.4839, -0.7375, 0.1463, 1.4839, -0.7375, 0.1463, 0.7419, -0.7375, 0.2374, 0.7419, -0.7375, 0.2374, 1.4839, 0.631, 0.3414, 1.381, -0.7375, 0.2374, 1.4839, -0.631, 0.3414, 1.381, 0.631, 0.3414, 1.381, 0.7375, 0.2374, 1.4839, -0.7375, 0.2374, 1.4839, 0.631, 0.3414, 0.6905, 0.7375, 0.2374, 1.4839, 0.631, 0.3414, 1.381, 0.631, 0.3414, 0.6905, 0.7375, 0.2374, 0.7419, 0.7375, 0.2374, 1.4839, -0.631, 0.3414, -1.3811, 0.7375, 0.2374, -1.484, 0.631, 0.3414, -1.3811, -0.631, 0.3414, -1.3811, -0.7375, 0.2374, -1.484, 0.7375, 0.2374, -1.484, -0.631, 0.3414, 0, -0.7375, 0.2374, -1.484, -0.631, 0.3414, -1.3811, -0.631, 0.3414, 0, -0.7375, 0.2374, 0, -0.7375, 0.2374, -1.484, -0.7375, 0.1463, 1.4839, 0.7375, 0.2374, 1.4839, 0.7375, 0.1463, 1.4839, -0.7375, 0.1463, 1.4839, -0.7375, 0.2374, 1.4839, 0.7375, 0.2374, 1.4839, -0.631, 0.3414, 0.6905, -0.7375, 0.2374, 0, -0.631, 0.3414, 0, -0.631, 0.3414, 0.6905, -0.7375, 0.2374, 0.7419, -0.7375, 0.2374, 0, 0.631, 0.3414, -1.3811, 0.7375, 0.2374, 0, 0.631, 0.3414, 0, 0.631, 0.3414, -1.3811, 0.7375, 0.2374, -1.484, 0.7375, 0.2374, 0, -0.7375, 0.1463, -1.484, -0.7375, 0.2374, 0, -0.7375, 0.1463, 0, -0.7375, 0.1463, -1.484, -0.7375, 0.2374, -1.484, -0.7375, 0.2374, 0, 0.631, 0.3414, 0.6905, -0.631, 0.3414, 0, 0.631, 0.3414, 0, 0.631, 0.3414, 0.6905, -0.631, 0.3414, 0.6905, -0.631, 0.3414, 0, 0.7375, 0.1463, 0.7419, 0.7375, 0.2374, 0, 0.7375, 0.1463, 0, 0.7375, 0.1463, 0.7419, 0.7375, 0.2374, 0.7419, 0.7375, 0.2374, 0, -0.7375, 0.1463, 0.7419, -0.75, 0.15, 0, -0.7375, 0.1463, 0, -0.7375, 0.1463, 0.7419, -0.75, 0.15, 0.75, -0.75, 0.15, 0, 0.7375, 0.1463, -1.484, 0.75, 0.15, 0, 0.7375, 0.1463, 0, 0.7375, 0.1463, -1.484, 0.75, 0.15, -1.5, 0.75, 0.15, 0, -0.7375, 0.1463, 1.4839, -0.75, 0.15, 0.75, -0.7375, 0.1463, 0.7419, -0.7375, 0.1463, 1.4839, -0.75, 0.15, 1.5, -0.75, 0.15, 0.75, 0.7375, 0.1463, 1.4839, 0.7375, 0.2374, 0.7419, 0.7375, 0.1463, 0.7419, 0.7375, 0.1463, 1.4839, 0.7375, 0.2374, 1.4839, 0.7375, 0.2374, 0.7419, -0.631, 0.3414, 1.381, -0.7375, 0.2374, 0.7419, -0.631, 0.3414, 0.6905, -0.631, 0.3414, 1.381, -0.7375, 0.2374, 1.4839, -0.7375, 0.2374, 0.7419, 0.631, 0.3414, 0, 0.7375, 0.2374, 0.7419, 0.631, 0.3414, 0.6905, 0.631, 0.3414, 0, 0.7375, 0.2374, 0, 0.7375, 0.2374, 0.7419, -0.7375, 0.1463, 0, -0.7375, 0.2374, 0.7419, -0.7375, 0.1463, 0.7419, -0.7375, 0.1463, 0, -0.7375, 0.2374, 0, -0.7375, 0.2374, 0.7419, 0.7375, 0.1463, 0, 0.75, 0.15, 0.75, 0.7375, 0.1463, 0.7419, 0.7375, 0.1463, 0, 0.75, 0.15, 0, 0.75, 0.15, 0.75, -0.631, 0.3414, 1.381, 0.631, 0.3811, 1.381, 0.631, 0.3414, 1.381, -0.631, 0.3414, 1.381, -0.631, 0.3811, 1.381, 0.631, 0.3811, 1.381)
@@ -65,8 +67,44 @@ horizontal_clamp = Vector2(-0.1, 0.1)
 state = 4
 custom_camera_offset = Vector3(0, 0.25, -0.15)
 
-[node name="SittingMarker" type="Marker3D" parent="RootModule/InteractWithProp/Sleep" index="0"]
+[node name="CanvasLayer" type="CanvasLayer" parent="RootModule/InteractWithProp/Sleep" index="0"]
+layer = 6
+
+[node name="CenterContainer" type="CenterContainer" parent="RootModule/InteractWithProp/Sleep/CanvasLayer" index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_j2p7k")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RootModule/InteractWithProp/Sleep/CanvasLayer/CenterContainer" index="0"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="RichTextLabel" parent="RootModule/InteractWithProp/Sleep/CanvasLayer/CenterContainer/VBoxContainer" index="0"]
+custom_minimum_size = Vector2(550, 90)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Abberation[/center]
+
+1. A deviation from what is considered proper or normal. 
+2. A departure from what is typical. 
+3. A disorder or abnormal alteration in one's mental state.
+"
+
+[node name="Label2" type="Label" parent="RootModule/InteractWithProp/Sleep/CanvasLayer/CenterContainer/VBoxContainer" index="1"]
+layout_mode = 2
+text = "PRESS ANY KEY TO SKIP"
+horizontal_alignment = 1
+
+[node name="SittingMarker" type="Marker3D" parent="RootModule/InteractWithProp/Sleep" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0685474, 0.295556)
 
-[node name="StandingMarker" type="Marker3D" parent="RootModule/InteractWithProp/Sleep" index="1"]
+[node name="StandingMarker" type="Marker3D" parent="RootModule/InteractWithProp/Sleep" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.7)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="RootModule/InteractWithProp/Sleep" index="3"]
+stream = ExtResource("7_yjwuu")
+volume_db = -15.0

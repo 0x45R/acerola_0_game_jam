@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://pvctik8fhl5b"
+path="res://.godot/imported/VOICE - All I wanna say is that they don't really care about you.wav-7e06b6d196a80253dc70a39b36edd5bb.sample"
+
+[deps]
+
+source_file="res://src/audio/sound/voice/VOICE - All I wanna say is that they don't really care about you.wav"
+dest_files=["res://.godot/imported/VOICE - All I wanna say is that they don't really care about you.wav-7e06b6d196a80253dc70a39b36edd5bb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

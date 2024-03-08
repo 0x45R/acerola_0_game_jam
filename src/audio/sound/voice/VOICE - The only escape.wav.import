@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://byyi4ak1qo5ue"
+path="res://.godot/imported/VOICE - The only escape.wav-94c3b50f5566b5af7673e95f5471e99a.sample"
+
+[deps]
+
+source_file="res://src/audio/sound/voice/VOICE - The only escape.wav"
+dest_files=["res://.godot/imported/VOICE - The only escape.wav-94c3b50f5566b5af7673e95f5471e99a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

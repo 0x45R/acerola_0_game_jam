@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dnjgoojun8b31"
+path="res://.godot/imported/VOICE - Don't care about other people.wav-d5a9d1e36662ddda00804fe2e2a8d1ba.sample"
+
+[deps]
+
+source_file="res://src/audio/sound/voice/VOICE - Don't care about other people.wav"
+dest_files=["res://.godot/imported/VOICE - Don't care about other people.wav-d5a9d1e36662ddda00804fe2e2a8d1ba.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

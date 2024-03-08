@@ -7,8 +7,10 @@ func _physics_process(delta):
 		return
 	if get_module_root().get_node("Pause").paused:
 		return
-	if Input.is_action_pressed("move_run"):
+	var wall_avoidance = get_module_root().get_node("%WallAvoidanceModule")	
+	if Input.is_action_pressed("move_run") and not wall_avoidance.distance_to_point < 0.5:
 		module.state = module.STATE.Running
+
 
 		var input_vector = Input.get_vector("move_left","move_right","move_forward","move_backward").normalized() 
 		var direction = Vector3(input_vector.x, 0, input_vector.y)

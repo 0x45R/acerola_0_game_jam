@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bc1cjn52hi6b5"
+path="res://.godot/imported/VOICE - Love to company.wav-4a373f96630dbe9d97ef28f115b46a49.sample"
+
+[deps]
+
+source_file="res://src/audio/sound/voice/VOICE - Love to company.wav"
+dest_files=["res://.godot/imported/VOICE - Love to company.wav-4a373f96630dbe9d97ef28f115b46a49.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
