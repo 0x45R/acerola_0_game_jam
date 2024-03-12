@@ -1,0 +1,5 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://qjak2l4x36mi"]
+
+[resource]
+resource_local_to_scene = true
+uv1_scale = Vector3(-1, -1, 1)

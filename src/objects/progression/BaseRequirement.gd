@@ -7,6 +7,10 @@ class_name BaseRequirement
 @export var description: String
 @export var failed_message: String
 
+func change_description(value):
+	description = value
+	module.description_changed(self)
+
 func have_requirements_been_fulfilled() -> Dictionary:
 	for requirement in requirements:
 		if not requirement.fulfilled:

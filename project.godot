@@ -71,3 +71,7 @@ skip={
 3d_physics/layer_1="WORLD"
 3d_physics/layer_2="PLAYER"
 3d_physics/layer_3="INTERACTABLE"
+
+[rendering]
+
+occlusion_culling/use_occlusion_culling=true

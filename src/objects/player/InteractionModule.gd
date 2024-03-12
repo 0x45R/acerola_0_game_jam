@@ -21,6 +21,10 @@ func _process(delta):
 		interaction_bar.visible = false
 		current_time = 0
 		return
+	if  interaction.ignore:
+		interaction_bar.visible = false
+		current_time = 0
+		return
 	var prop = interaction.get_module_root()
 	if interaction.interaction_time == 0:
 		if Input.is_action_just_pressed("interact"):

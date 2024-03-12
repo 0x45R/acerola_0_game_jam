@@ -1,5 +1,5 @@
 extends BaseModule
-
+@export var ignore: bool = false
 @export var interaction_time: float = 0
 @export var can_interact: bool = true
 signal interacted(player)

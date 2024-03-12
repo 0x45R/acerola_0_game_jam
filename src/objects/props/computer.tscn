@@ -1,0 +1,36 @@
+[gd_scene load_steps=9 format=3 uid="uid://43f51gor8ldt"]
+
+[ext_resource type="PackedScene" uid="uid://22odxls0kcxp" path="res://src/models/computer.blend" id="1_cqo2c"]
+[ext_resource type="Script" path="res://src/objects/props/computer.gd" id="2_midf3"]
+[ext_resource type="Texture2D" uid="uid://dfcrwhw20megf" path="res://src/textures/93screenshot.png" id="3_r0wed"]
+[ext_resource type="Texture2D" uid="uid://bot4ww42tm0sh" path="res://src/textures/naughty.png" id="4_b2dm3"]
+[ext_resource type="Texture2D" uid="uid://dhty2kito7mwg" path="res://src/textures/excel.png" id="4_oxev8"]
+[ext_resource type="Texture2D" uid="uid://bveyr2lltiyef" path="res://src/textures/disabled.png" id="5_nb8ql"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rjfde"]
+resource_local_to_scene = true
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajde5"]
+resource_local_to_scene = true
+albedo_texture = ExtResource("3_r0wed")
+emission_enabled = true
+emission_texture = ExtResource("3_r0wed")
+uv1_scale = Vector3(1, 1.14, 1.03)
+uv1_offset = Vector3(0, -0.055, 0)
+
+[node name="computer" instance=ExtResource("1_cqo2c")]
+script = ExtResource("2_midf3")
+screen_enabled_texture = ExtResource("3_r0wed")
+screen_excel_texture = ExtResource("4_oxev8")
+screen_naughty_texture = ExtResource("4_b2dm3")
+screen_disabled_texture = ExtResource("5_nb8ql")
+
+[node name="Sphere" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rjfde")
+
+[node name="Cube_001" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ajde5")

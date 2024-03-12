@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://dtnb0e15dk10y" path="res://src/models/cubicle.blend" id="1_tevtl"]
 [ext_resource type="Theme" uid="uid://de0sidstciui4" path="res://src/ui/themes/theme.tres" id="2_ch47o"]
 [ext_resource type="Script" path="res://src/objects/props/CubicleLabel.gd" id="3_fkdr4"]
-[ext_resource type="PackedScene" uid="uid://22odxls0kcxp" path="res://src/models/computer.blend" id="4_2wf1d"]
 [ext_resource type="Texture2D" uid="uid://dvhvnt8s01gb2" path="res://src/textures/office_wall.jpg" id="4_rai6g"]
+[ext_resource type="PackedScene" uid="uid://43f51gor8ldt" path="res://src/objects/props/computer.tscn" id="5_p36j8"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ivm2u"]
 viewport_path = NodePath("SubViewport")
@@ -81,5 +81,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_r0sb3")
 [node name="Plane_002" parent="." index="4"]
 surface_material_override/0 = SubResource("StandardMaterial3D_jk3ig")
 
-[node name="computer" parent="." index="5" instance=ExtResource("4_2wf1d")]
+[node name="computer2" parent="." index="5" instance=ExtResource("5_p36j8")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.439736, 0.827965, -0.103984)

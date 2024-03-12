@@ -21,15 +21,17 @@ func _clear_failed_label(_requirement = null):
 	
 func _update_failed_label(requirement = null):
 
-	var tween = create_tween()
+
 	if (requirement != null):
 		if failed_label.modulate.a > 0:
 			failed_label.modulate.a = 0
 			failed_label.text = requirement.failed_message
+			var tween = create_tween()
 			tween.tween_property(failed_label, "modulate:a", 1, 0.2)
 			await get_tree().create_timer(FAILED_MESSAGE_FADE_TIME).timeout
 			_clear_failed_label()
 	else:
+		var tween = create_tween()
 		failed_label.modulate.a = 1
 		tween.tween_property(failed_label, "modulate:a", 0, 0.2)
 		await get_tree().create_timer(0.2).timeout
@@ -41,6 +43,9 @@ func _update_label(_requirement = null):
 		if child is BaseRequirement:
 			if not child.fulfilled:
 				requirement_label.text += child.description + "\n"
+
+func description_changed(requirement):
+	_update_label()
 
 func requirement_failed(requirement):
 	print("[PROGRESS] Requirement failed \"%s\"" % [requirement.name])

@@ -6,10 +6,12 @@ enum STATE {
 	Running,
 	Falling,
 	Sitting,
-	Sleeping
+	Sleeping,
+	Pulling,
+	Typing
 }
 
-var state = STATE.Walking: set = _change_state
+@export var state = STATE.Walking: set = _change_state
 
 signal state_changed(state)
 

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dpkvow7jm7se7"]
+
+[ext_resource type="Texture2D" uid="uid://belscvkkh7tfe" path="res://src/models/npc_suit.png" id="1_du5n1"]
+
+[resource]
+albedo_texture = ExtResource("1_du5n1")
+metallic_specular = 1.0
+texture_filter = 0

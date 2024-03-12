@@ -2,7 +2,7 @@ extends Node3D
 class_name BaseModule
 
 @onready var module: BaseModule = get_module()
-@onready var entity: CharacterBody3D = get_entity()
+@onready var entity: Node3D = get_entity()
 
 func _check_if_visible():
 	self.set_process(visible)
