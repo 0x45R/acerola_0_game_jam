@@ -1,5 +1,4 @@
 extends BaseModule
-@export var paper_list: BaseModule
 @export var requirement: BaseRequirement
 @export var animation_player: AnimationPlayer
 var printed = false
@@ -15,7 +14,7 @@ func _interacted(_player):
 	requirement.change_description("Wait...")
 	await animation_player.animation_finished
 	requirement.change_description("Pickup the list")
-	paper_list.get_parent().ignore = false
+	get_module_root().get_parent().get_node("PaperList").get_node("InteractWithProp").ignore = false
 	
 func _ready():
 	module.interaction_successful.connect(_interacted)

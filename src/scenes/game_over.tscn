@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh5nsrsswo6f8"]
+
+[ext_resource type="Script" path="res://src/scenes/game_over.gd" id="1_kud0k"]
+
+[node name="GameOver" type="Node3D"]
+script = ExtResource("1_kud0k")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true

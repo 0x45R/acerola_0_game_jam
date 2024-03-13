@@ -14,13 +14,13 @@ func _ready():
 	animation_player = entity.get_node("AnimationPlayer")
 	
 func _failed(_player):
-	var scene = get_tree().get_root().get_child(0)
+	var scene = get_tree().current_scene
 	var game = scene.get_node("Modules/Game")
 	game.employee_failed()
 	
 
 func _success(_player):
-	var scene = get_tree().get_root().get_child(0)
+	var scene = get_tree().current_scene
 	npc.get_node("%GeneralSkeleton").stop_all_ik()
 	module.ignore = true
 	var game = scene.get_node("Modules/Game")

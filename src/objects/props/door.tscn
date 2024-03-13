@@ -94,7 +94,7 @@ shape = SubResource("ConcavePolygonShape3D_hbbyy")
 
 [node name="Door" type="Node3D" parent="Empty/RootModule/InteractWithProp" index="1" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("4_7pjvp")
-animation_player = NodePath("../../../../AnimationPlayer")
+animation_player = NodePath("")
 
 [node name="PlaySoundOnSuccessfulInteraction" type="Node3D" parent="Empty/RootModule/InteractWithProp" index="2"]
 script = ExtResource("5_xroyy")

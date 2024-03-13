@@ -6,6 +6,7 @@ func _physics_process(delta):
 	if (module.state == module.STATE.Running or module.state == module.STATE.Sitting or module.state == module.STATE.Sleeping):
 		return
 	if get_module_root().get_node("Pause").paused:
+		entity.remote_input_vector = Vector2(0,0)
 		return
 	module.state = module.STATE.Walking
 

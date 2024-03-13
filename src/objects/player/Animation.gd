@@ -6,7 +6,10 @@ var input_direction: Vector2
 
 
 func _physics_process(delta):
+	if not animation_tree:
+		return
 	input_direction = lerp(input_direction, entity.remote_input_vector, delta*15)
+
 	animation_tree["parameters/State/transition_request"] = movement_module.STATE.keys()[movement_module.state]
 	animation_tree["parameters/Walking/blend_position"] = input_direction
 	animation_tree["parameters/Running/blend_position"] = input_direction

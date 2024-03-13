@@ -11,7 +11,7 @@ func _physics_process(_delta):
 	if not movement_module:
 		movement_module = get_module_root().get_node("Movement")
 	if not audio_stream_player:
-		if get_tree().get_root().get_child(0).name == "Office":
+		if get_tree().current_scene.name == "Office":
 			audio_stream_player = office_audio_stream_player
 		else:
 			audio_stream_player = apartment_audio_stream_player 

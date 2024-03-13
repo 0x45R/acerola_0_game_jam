@@ -1249,7 +1249,7 @@ script = ExtResource("3_6ak7h")
 
 [node name="Animation" type="Node3D" parent="Modules/Mesh" node_paths=PackedStringArray("animation_tree")]
 script = ExtResource("4_c1m3q")
-animation_tree = NodePath("../Root Scene/AnimationTree")
+animation_tree = NodePath("")
 
 [node name="Root Scene" type="Node3D" parent="Modules/Mesh"]
 

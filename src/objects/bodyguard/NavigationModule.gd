@@ -10,7 +10,7 @@ var player
 var target
 
 func _ready():
-	var scene = get_tree().get_root().get_child(0)
+	var scene = get_tree().current_scene
 	player = scene.get_node("Player")
 	target = scene.get_node("%DoorMarker")
 	

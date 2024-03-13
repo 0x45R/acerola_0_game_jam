@@ -36,4 +36,5 @@ func _create_workstations():
 			add_child(instance, true) 
 			instance.name = node_name
 			instance.position += offset*i
-			instance.owner = get_tree().edited_scene_root
+			if is_inside_tree():
+				instance.owner = get_tree().edited_scene_root

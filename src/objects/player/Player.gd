@@ -7,6 +7,8 @@ extends CharacterBody3D
 @export var frozen: bool = false
 
 func _physics_process(delta):
+	if get_node("Modules/Pause").paused:
+		return
 	if frozen:
 		return
 	var direction = remote_direction

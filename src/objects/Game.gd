@@ -18,6 +18,12 @@ signal employee_fired(employee)
 
 func employee_failed():
 	get_node("Timer").modify_time(-6)
+	
+func end_game():
+	print("[GAME] Game ended, counting score")
+	GameData.won = false
+	if is_inside_tree():
+		get_tree().change_scene_to_file("res://src/scenes/game_over.tscn")
 
 func _delete_from_list(key):
 	for child in  employees_container.get_children():
@@ -26,17 +32,22 @@ func _delete_from_list(key):
 			var tween = get_tree().create_tween()
 			var strikethrough = child.get_node("%StrikeThrough")
 			tween.tween_property(strikethrough, "value", 100, 0.3)
+			
 	if erased_workstations.size() == workstations.keys().size():
-		print("Game won")
 		main_requirement.fulfill_requirement()
+		GameData.won = true
+
+
 		
 		
 func _employee_fired(employee):
 	if employee.name in workstations.keys():
+		GameData.neccessary(employee)
 		# NECCESSARY
 		_delete_from_list(employee.name)
 		get_node("Timer").modify_time(6)
 	else:
+		GameData.extra(employee)
 		# EXTRA
 		get_node("Timer").modify_time(3)
 		
@@ -53,6 +64,7 @@ func _update_list():
 			var employee_name = employee_names.pick_random()	
 			instance.get_node("%Description").text = "%s\n%s efficency" % [employee_name, str(randi_range(0,49)) + "%"]
 			employees_container.add_child(instance)
+			
 func _all_workstations_ready():
 	print("All workstations ready")
 	_update_list()
@@ -68,7 +80,7 @@ enum STATE {
 	Naughty=3
 }
 
-@export var possible_states = {
+var possible_states = {
 	"Lazy" = 9,
 	"Sleeping" = 16,
 	"Naughty" = 16
@@ -105,12 +117,72 @@ func populate_states():
 	
 var employee_names
 	
-func end_game():
-	print("[GAME] Game ended, counting score")
+
 	
 func _ready():
-	var file = FileAccess.open("res://src/data/names.txt", FileAccess.READ)
-	employee_names = Array(file.get_as_text().split("\n"))
+	GameData.won = false
+	possible_states = GameData.get_states()
+	
+	# Just a random list of names, idk where i got it from
+	# that's just a detail, the game is so low res that you won't be able to read anything, and you'll struggle with reading the workstation code alone. ty
+	# ANY CONNECTION TO REAL PEOPLE IS RANDOM AND NOT INTEDED PLEASE DO NOT SUE ME
+	var employee_names_raw = "Amelia Rosewater
+Benjamin Wrightstone
+Clara Nightingale
+Diego Ramirez-Flores
+Evelyn Dubois
+Finnley Tanaka
+Gabriela Hernandez
+Henry Lawson
+Isabella Kapoor
+Jacob Moreau
+Kimberly Young
+Liam Petrov
+Maya Diaz
+Noah Watanabe
+Olivia Chen
+Patrick Murphy
+Quinn Davies
+Riley Garcia
+Sophia Benítez
+Thomas Nguyen
+Ruppert Puwaski
+Ava Durand
+Benjamin Fischer
+Chloe Jackson
+David Kim
+Emily Leclerc
+Ethan Miller
+Fiona Martinez
+Gabriel Oliveira
+Hannah Patel
+Isaac Robinson
+Isabella Sanchez
+Jacob Thomas
+Jasmine Walker
+Julian Yang
+Katherine Young
+Liam Zhang
+Lily Fernandez
+Matthew Cohen
+Mia Lee
+Noah Lopez
+Olivia Hernandez
+Patrick Patel
+Penelope Dubois
+Quinn Takahashi
+Riley Nguyen
+Sophia Garcia
+Thomas Oliveira
+Ava Khan
+Benjamin Durand
+Chloe Miller
+"
+	
+	# I couldn't get the names to work flawlessly. so i just embed them in code
+	#var file = FileAccess.open("res://src/data/names.txt", FileAccess.READ)
+	
+	employee_names = Array(employee_names_raw.split("\n"))#Array(file.get_as_text().split("\n"))
 	employee_fired.connect(_employee_fired)
 	populate_states()
 	#await states_ready

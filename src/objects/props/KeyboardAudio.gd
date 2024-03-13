@@ -6,6 +6,7 @@ func _finished():
 	audio_stream_player.play(randf_range(0, 15))
 
 func _ready():
+	_finished()
 	await get_tree().process_frame
 	var workstation = get_module_root().get_parent()
 	if not workstation.state == workstation.STATE.Sleeping:

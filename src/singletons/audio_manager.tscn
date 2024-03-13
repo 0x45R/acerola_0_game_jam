@@ -1,0 +1,93 @@
+[gd_scene load_steps=25 format=3 uid="uid://dxkpagqflismd"]
+
+[ext_resource type="AudioStream" uid="uid://dx6cw2051hwxn" path="res://src/audio/sound/sad-piano-background-music-for-videos-7573.mp3" id="1_xnoq8"]
+[ext_resource type="Script" path="res://src/objects/player/KopfStimme.gd" id="2_0mjwv"]
+[ext_resource type="Script" path="res://src/objects/NoiseGenerator.gd" id="2_1dhhk"]
+[ext_resource type="Script" path="res://src/singletons/AudioStreamPlayer.gd" id="2_f8cae"]
+[ext_resource type="AudioStream" uid="uid://pvctik8fhl5b" path="res://src/audio/sound/voice/VOICE - All I wanna say is that they don't really care about you.wav" id="4_uplvi"]
+[ext_resource type="AudioStream" uid="uid://ceejofrgqcxjo" path="res://src/audio/sound/voice/VOICE - Another cog.wav" id="5_3niw5"]
+[ext_resource type="AudioStream" uid="uid://cfw3nkob0ybpj" path="res://src/audio/sound/voice/VOICE - Not tired.wav" id="6_feqmo"]
+[ext_resource type="AudioStream" uid="uid://drovma5sxyyve" path="res://src/audio/sound/voice/Voice - Obsolete.wav" id="7_rkbri"]
+[ext_resource type="AudioStream" uid="uid://byyi4ak1qo5ue" path="res://src/audio/sound/voice/VOICE - The only escape.wav" id="8_mc8km"]
+[ext_resource type="AudioStream" uid="uid://ub8blrr5bjf5" path="res://src/audio/sound/voice/VOICE - Uncertain future.wav" id="9_74r7d"]
+[ext_resource type="AudioStream" uid="uid://bri5ce7yjh8cy" path="res://src/audio/sound/voice/VOICE - Work more.wav" id="10_wlwmj"]
+[ext_resource type="AudioStream" uid="uid://bcjqsd68o03gf" path="res://src/audio/sound/voice/VOICE - You shouldn't sleep so long.wav" id="11_jcq22"]
+[ext_resource type="AudioStream" uid="uid://b3cxy73eurbmq" path="res://src/audio/sound/voice/VOICE - You waste time.wav" id="12_58864"]
+[ext_resource type="AudioStream" uid="uid://sckdd1f370vw" path="res://src/audio/sound/voice/VOICE - You'll starve.wav" id="13_vcw1m"]
+[ext_resource type="AudioStream" uid="uid://d1lrb37l51gs6" path="res://src/audio/sound/voice/VOICE - Boss admiration.wav" id="14_bnwwo"]
+[ext_resource type="AudioStream" uid="uid://dnjgoojun8b31" path="res://src/audio/sound/voice/VOICE - Don't care about other people.wav" id="15_bkjv1"]
+[ext_resource type="AudioStream" uid="uid://rm7l0tenj8j8" path="res://src/audio/sound/voice/VOICE - Don't hear you screaming.wav" id="16_cylef"]
+[ext_resource type="AudioStream" uid="uid://oluv5b0ulygg" path="res://src/audio/sound/voice/VOICE - Don't work enough.wav" id="17_p88d2"]
+[ext_resource type="AudioStream" uid="uid://cw50pcilk3m16" path="res://src/audio/sound/voice/VOICE - Expendable.wav" id="18_mbdej"]
+[ext_resource type="AudioStream" uid="uid://di2cq8dwotdpc" path="res://src/audio/sound/voice/VOICE - Get back to work.wav" id="19_bae43"]
+[ext_resource type="AudioStream" uid="uid://blwjo0tkjnato" path="res://src/audio/sound/voice/VOICE - Just wasting time.wav" id="20_fr5k5"]
+[ext_resource type="AudioStream" uid="uid://bc1cjn52hi6b5" path="res://src/audio/sound/voice/VOICE - Love to company.wav" id="21_41bfi"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_pwy03"]
+buffer_length = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_phetg"]
+streams_count = 18
+stream_0/stream = ExtResource("4_uplvi")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("5_3niw5")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("14_bnwwo")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("15_bkjv1")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("16_cylef")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("17_p88d2")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("18_mbdej")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("19_bae43")
+stream_7/weight = 1.0
+stream_8/stream = ExtResource("20_fr5k5")
+stream_8/weight = 1.0
+stream_9/stream = ExtResource("21_41bfi")
+stream_9/weight = 1.0
+stream_10/stream = ExtResource("6_feqmo")
+stream_10/weight = 1.0
+stream_11/stream = ExtResource("7_rkbri")
+stream_11/weight = 1.0
+stream_12/stream = ExtResource("8_mc8km")
+stream_12/weight = 1.0
+stream_13/stream = ExtResource("9_74r7d")
+stream_13/weight = 1.0
+stream_14/stream = ExtResource("10_wlwmj")
+stream_14/weight = 1.0
+stream_15/stream = ExtResource("11_jcq22")
+stream_15/weight = 1.0
+stream_16/stream = ExtResource("12_58864")
+stream_16/weight = 1.0
+stream_17/stream = ExtResource("13_vcw1m")
+stream_17/weight = 1.0
+
+[node name="AudioManager" type="Node"]
+
+[node name="Music" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("1_xnoq8")
+volume_db = -25.0
+autoplay = true
+bus = &"Music"
+script = ExtResource("2_f8cae")
+
+[node name="NoiseGenerator" type="Node" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NoiseGenerator"]
+stream = SubResource("AudioStreamGenerator_pwy03")
+volume_db = -30.0
+autoplay = true
+bus = &"SFX"
+script = ExtResource("2_1dhhk")
+
+[node name="KopfStimme" type="Node" parent="."]
+script = ExtResource("2_0mjwv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="KopfStimme"]
+stream = SubResource("AudioStreamRandomizer_phetg")
+volume_db = -30.0

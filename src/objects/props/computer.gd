@@ -23,14 +23,14 @@ func _update_visuals():
 	var screen_material = screen.get_surface_override_material(0)
 	if enabled:
 		
-		if module.state == module.STATE.Lazy:
-			screen_material["albedo_texture"] = screen_enabled_texture
-			screen_material["emission_texture"] = screen_enabled_texture
+		#if module.state == module.STATE.Excel:
+		#	screen_material["albedo_texture"] = screen_enabled_texture
+		#	screen_material["emission_texture"] = screen_enabled_texture
 
 		if module.state == module.STATE.Naughty:
 			screen_material["albedo_texture"] = screen_naughty_texture
 			screen_material["emission_texture"] = screen_naughty_texture
-		if module.state == module.STATE.Excel:
+		if module.state == module.STATE.Excel or  module.state == module.STATE.Lazy:
 			screen_material["albedo_texture"] = screen_excel_texture
 			screen_material["emission_texture"] = screen_excel_texture
 		

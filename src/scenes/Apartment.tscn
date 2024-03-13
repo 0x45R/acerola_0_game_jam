@@ -314,15 +314,13 @@ script = ExtResource("11_osjpu")
 description = "Wake up"
 failed_message = "You are still asleep..."
 
-[node name="DoorRequirement" type="Node3D" parent="Modules/QuestManager" node_paths=PackedStringArray("requirements")]
+[node name="DoorRequirement" type="Node3D" parent="Modules/QuestManager"]
 script = ExtResource("10_y8fy0")
-requirements = [NodePath("../WakeUpRequirement")]
 description = "Get ready for work"
 failed_message = "Get ready first"
 
-[node name="JobRequirement" type="Node3D" parent="Modules/QuestManager" node_paths=PackedStringArray("requirements")]
+[node name="JobRequirement" type="Node3D" parent="Modules/QuestManager"]
 script = ExtResource("10_y8fy0")
-requirements = [NodePath("../WakeUpRequirement")]
 description = "Go to work"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Modules/QuestManager"]
@@ -560,11 +558,11 @@ scene_path = "res://src/scenes/Office.tscn"
 
 [node name="FulfillRequirementOnInteraction" type="Node3D" parent="Building/Entryway/teleport_door/Empty/RootModule/InteractWithProp" node_paths=PackedStringArray("requirement")]
 script = ExtResource("6_prth1")
-requirement = NodePath("../../../../../../../Modules/QuestManager/JobRequirement")
+requirement = NodePath("")
 
 [node name="LockInteraction" type="Node3D" parent="Building/Entryway/teleport_door/Empty/RootModule/InteractWithProp" node_paths=PackedStringArray("requirement")]
 script = ExtResource("7_iiogi")
-requirement = NodePath("../../../../../../../Modules/QuestManager/JobRequirement")
+requirement = NodePath("")
 
 [node name="Cube" type="MeshInstance3D" parent="Building/Entryway/teleport_door/Empty"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.086, 0)
@@ -616,21 +614,24 @@ material = ExtResource("1_namsu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9455, 0.511821, 12.3992)
 
 [node name="ReverseLockInteraction" parent="Building/Bedroom/Bed/RootModule/InteractWithProp" index="0" node_paths=PackedStringArray("requirement")]
-requirement = NodePath("../../../../../../Modules/QuestManager/WakeUpRequirement")
+requirement = NodePath("")
 
 [node name="FulfillRequirementOnInteraction" parent="Building/Bedroom/Bed/RootModule/InteractWithProp" index="1" node_paths=PackedStringArray("requirement")]
-requirement = NodePath("../../../../../../Modules/QuestManager/WakeUpRequirement")
+requirement = NodePath("")
 
 [node name="BedroomDoor" parent="Building/Bedroom" instance=ExtResource("1_iwe3p")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.5, -0.0233001, 9.14278)
 
+[node name="Door" parent="Building/Bedroom/BedroomDoor/Empty/RootModule/InteractWithProp" index="1" node_paths=PackedStringArray("animation_player")]
+animation_player = NodePath("")
+
 [node name="FulfillRequirementOnInteraction" type="Node3D" parent="Building/Bedroom/BedroomDoor/Empty/RootModule/InteractWithProp" index="4" node_paths=PackedStringArray("requirement")]
 script = ExtResource("6_prth1")
-requirement = NodePath("../../../../../../../Modules/QuestManager/DoorRequirement")
+requirement = NodePath("")
 
 [node name="LockInteraction" type="Node3D" parent="Building/Bedroom/BedroomDoor/Empty/RootModule/InteractWithProp" index="5" node_paths=PackedStringArray("requirement")]
 script = ExtResource("7_iiogi")
-requirement = NodePath("../../../../../../../Modules/QuestManager/DoorRequirement")
+requirement = NodePath("")
 
 [node name="alarm_clock" parent="Building/Bedroom" instance=ExtResource("26_3fi6f")]
 transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -10.2025, 1.1083, 13.4675)

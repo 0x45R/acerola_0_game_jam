@@ -10,7 +10,7 @@ enum STATE {
 
 func _ready():
 	state = STATE.Excel
-	var game = get_tree().get_root().get_child(0).get_node("Modules/Game")
+	var game = get_tree().current_scene.get_node("Modules/Game")
 	state = game.get_possible_state()
 	if state == STATE.Lazy:
 		game.add_workstation_to_list(name, state)

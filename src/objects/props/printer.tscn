@@ -264,10 +264,9 @@ collision_mask = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 1.35, -0.3)
 shape = SubResource("BoxShape3D_fsg6d")
 
-[node name="Printer" type="Node3D" parent="RootModule/InteractWithProp" node_paths=PackedStringArray("paper_list", "animation_player")]
+[node name="Printer" type="Node3D" parent="RootModule/InteractWithProp" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("4_kel0d")
-paper_list = NodePath("../../../PaperList/InteractWithProp/PaperList")
-animation_player = NodePath("../../../AnimationPlayer")
+animation_player = NodePath("")
 
 [node name="ReverseLockInteraction" type="Node3D" parent="RootModule/InteractWithProp"]
 script = ExtResource("5_5qndo")
@@ -281,6 +280,7 @@ script = ExtResource("6_u6yga")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RootModule/InteractWithProp/BaseModule"]
 stream = ExtResource("7_p7mfc")
+bus = &"SFX"
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_r7d0a")
