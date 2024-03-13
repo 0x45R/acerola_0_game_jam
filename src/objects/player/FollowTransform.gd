@@ -7,6 +7,7 @@ extends BaseModule
 func _physics_process(delta):
 	var desired_position = node_to_follow.position+position_offset
 	if weight <= 0:
-		weight = 1/delta
-	position = lerp(position, desired_position,delta*weight)
+		position = desired_position
+	else:
+		position = lerp(position, desired_position,delta*weight)
 	

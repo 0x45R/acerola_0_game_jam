@@ -4,14 +4,17 @@ extends BaseModule
 @onready var office_audio_stream_player = $OfficeAudioStreamPlayer3D
 
 var playback_position: float = 0.0
+var movement_module 
+var audio_stream_player
 
 func _physics_process(_delta):
-	var movement_module = get_module_root().get_node("Movement")
-	var audio_stream_player
-	if get_tree().get_root().get_child(0).name == "Office":
-		audio_stream_player = office_audio_stream_player
-	else:
-		audio_stream_player = apartment_audio_stream_player 
+	if not movement_module:
+		movement_module = get_module_root().get_node("Movement")
+	if not audio_stream_player:
+		if get_tree().get_root().get_child(0).name == "Office":
+			audio_stream_player = office_audio_stream_player
+		else:
+			audio_stream_player = apartment_audio_stream_player 
 	if movement_module.state == movement_module.STATE.Walking:
 		audio_stream_player.pitch_scale = 1.25
 	if movement_module.state == movement_module.STATE.Running:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cpdb3gjtwytfu"]
+[gd_scene load_steps=33 format=3 uid="uid://cpdb3gjtwytfu"]
 
 [ext_resource type="Script" path="res://src/RootModule.gd" id="2_upfvp"]
 [ext_resource type="Script" path="res://src/objects/props/InteractWithProp.gd" id="3_cu1wp"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://src/objects/progression/requirements/FulfillRequirementOnInteraction.gd" id="4_lraao"]
 [ext_resource type="Script" path="res://src/objects/progression/requirements/ReverseLockInteraction.gd" id="5_5qndo"]
 [ext_resource type="Texture2D" uid="uid://buqspnw8seruc" path="res://src/textures/alt_office.jpg" id="6_5g1n8"]
+[ext_resource type="Script" path="res://src/objects/props/PlaySoundOnSuccessfulInteractionAlt.gd" id="6_u6yga"]
+[ext_resource type="AudioStream" uid="uid://dmamry8u55lus" path="res://src/audio/sound/printer.wav" id="7_p7mfc"]
 [ext_resource type="Texture2D" uid="uid://dvhvnt8s01gb2" path="res://src/textures/office_wall.jpg" id="7_qgpxy"]
 [ext_resource type="Theme" uid="uid://de0sidstciui4" path="res://src/ui/themes/theme.tres" id="8_6cq56"]
 [ext_resource type="Script" path="res://src/objects/props/PaperList.gd" id="9_qfhxa"]
@@ -196,7 +198,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(-0.493056, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -208,12 +210,12 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 1.3, -0.276)]
+"values": [Vector3(0, 1.25227, -0.27048)]
 }
 
 [sub_resource type="Animation" id="Animation_2xvci"]
 resource_name = "empty"
-length = 5.0
+length = 7.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -221,7 +223,7 @@ tracks/0/path = NodePath("PaperList:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(5),
+"times": PackedFloat32Array(7),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(-0.493056, 0, 0)]
@@ -233,7 +235,7 @@ tracks/1/path = NodePath("PaperList:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 5),
+"times": PackedFloat32Array(0, 7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 1.25, -0.276), Vector3(0, 1.3633, 0)]
@@ -274,6 +276,12 @@ script = ExtResource("5_5qndo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 1.35, -0.3)
 script = ExtResource("4_lraao")
 
+[node name="BaseModule" type="Node3D" parent="RootModule/InteractWithProp"]
+script = ExtResource("6_u6yga")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="RootModule/InteractWithProp/BaseModule"]
+stream = ExtResource("7_p7mfc")
+
 [node name="Cube" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_r7d0a")
 skeleton = NodePath("")
@@ -303,7 +311,7 @@ mesh = SubResource("ArrayMesh_37hrt")
 skeleton = NodePath("")
 
 [node name="PaperList" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, -0.276)
+transform = Transform3D(1, 0, 0, 0, 0.88089, 0.47332, 0, -0.47332, 0.88089, 0, 1.25227, -0.27048)
 mesh = SubResource("PlaneMesh_prqtk")
 surface_material_override/0 = SubResource("StandardMaterial3D_73avg")
 

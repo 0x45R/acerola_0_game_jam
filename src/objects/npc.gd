@@ -20,8 +20,7 @@ func _physics_process(delta):
 		return
 	var direction = remote_direction
 	velocity = remote_velocity + direction + gravity_force
-	if not velocity:
-		return
-	move_and_slide()
+	if velocity:
+		move_and_slide()
 	
 

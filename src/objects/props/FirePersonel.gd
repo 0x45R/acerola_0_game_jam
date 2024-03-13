@@ -14,12 +14,18 @@ func _ready():
 	animation_player = entity.get_node("AnimationPlayer")
 	
 func _failed(_player):
-	print("FIRING FAILED")
+	var scene = get_tree().get_root().get_child(0)
+	var game = scene.get_node("Modules/Game")
+	game.employee_failed()
+	
 
 func _success(_player):
 	var scene = get_tree().get_root().get_child(0)
 	npc.get_node("%GeneralSkeleton").stop_all_ik()
 	module.ignore = true
+	var game = scene.get_node("Modules/Game")
+	
+	game.employee_fired.emit(get_module_root().get_parent())
 	
 	var movement_module = npc.get_node("Modules/Movement")
 	
@@ -31,12 +37,15 @@ func _success(_player):
 	var stand_marker = entity.get_node("StandMarker")
 	npc.global_transform = stand_marker.global_transform
 	
-	
 	movement_module.state = movement_module.STATE.Walking
-
+#npc.get_node("VisibleOnScreenEnabler3D").queue_free()
+	
 	npc.reparent(scene, true)
-	npc.set_physics_process(true)
-	npc.get_node("Modules/Movement/NavigationModule").start_navigation()
+	npc._set_all_children_process(npc, true)
+
+	var navigation_module = npc.get_node("Modules/Movement/NavigationModule")
+	navigation_module.start_navigation()
+	
 
 
 	

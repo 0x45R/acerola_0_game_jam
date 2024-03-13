@@ -1,18 +1,35 @@
-[gd_scene load_steps=16 format=3 uid="uid://mg2iahrnvdn2"]
+[gd_scene load_steps=24 format=3 uid="uid://mg2iahrnvdn2"]
 
 [ext_resource type="PackedScene" uid="uid://dn0lireecrx32" path="res://src/objects/props/office_chair.tscn" id="1_7kklu"]
 [ext_resource type="Script" path="res://src/objects/props/single_workstation.gd" id="1_v8leg"]
 [ext_resource type="PackedScene" uid="uid://bcquqombag6hf" path="res://src/objects/props/cubicle.tscn" id="2_smvln"]
 [ext_resource type="Script" path="res://src/RootModule.gd" id="2_ykoyx"]
-[ext_resource type="Script" path="res://src/BaseModule.gd" id="3_n5dp1"]
 [ext_resource type="Script" path="res://src/objects/props/LightDisappear.gd" id="3_x7y3m"]
 [ext_resource type="Script" path="res://src/objects/props/InteractWithProp.gd" id="4_vgvlu"]
+[ext_resource type="Script" path="res://src/objects/props/PlaySoundOnSuccessfulInteractionAlt.gd" id="5_4yalh"]
 [ext_resource type="Script" path="res://src/objects/props/FirePersonel.gd" id="5_8k4is"]
+[ext_resource type="Script" path="res://src/objects/props/KeyboardAudio.gd" id="5_461nq"]
 [ext_resource type="PackedScene" uid="uid://bhp0crcteq87y" path="res://src/objects/npc/npc.tscn" id="6_3pnws"]
+[ext_resource type="AudioStream" uid="uid://oke3duygnc38" path="res://src/audio/sound/good.mp3" id="6_7827q"]
+[ext_resource type="AudioStream" uid="uid://dcxp8fwlpbwx" path="res://src/audio/sound/typing/keyboard-alt.mp3" id="6_fgtrd"]
+[ext_resource type="AudioStream" uid="uid://dgkhialhppgl7" path="res://src/audio/sound/typing/keyboard-very-alt.mp3" id="7_fakmf"]
+[ext_resource type="AudioStream" uid="uid://dj16u14e2uyjg" path="res://src/audio/sound/bad.mp3" id="8_1rrgl"]
+[ext_resource type="AudioStream" uid="uid://bqq2ggtvv2ilc" path="res://src/audio/sound/typing/keyboard.mp3" id="8_frxro"]
+[ext_resource type="Script" path="res://src/objects/props/PlaySoundOnFailedInteraction.gd" id="8_wjd0i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_138r2"]
 radius = 0.8
 height = 2.2
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_23c32"]
+random_pitch = 1.5
+streams_count = 3
+stream_0/stream = ExtResource("6_fgtrd")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("7_fakmf")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("8_frxro")
+stream_2/weight = 1.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_nh227"]
 
@@ -20,33 +37,6 @@ height = 2.2
 cull_mode = 1
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
-
-[sub_resource type="Animation" id="Animation_syeqf"]
-resource_name = "fired"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("office_chair:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-1.73456, -2.38419e-07, 0.036594), Vector3(-2.53929, -2.38419e-07, -0.278344)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("office_chair:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, -1.5708, 0), Vector3(0, -2.27516, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_7736j"]
 length = 0.001
@@ -75,6 +65,33 @@ tracks/1/keys = {
 "values": [Vector3(0, -1.5708, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_syeqf"]
+resource_name = "fired"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("office_chair:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.73456, -2.38419e-07, 0.036594), Vector3(-2.53929, -2.38419e-07, -0.278344)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("office_chair:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, -1.5708, 0), Vector3(0, -2.27516, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_teskx"]
 _data = {
 "RESET": SubResource("Animation_7736j"),
@@ -88,26 +105,47 @@ script = ExtResource("1_v8leg")
 [node name="Modules" type="Node3D" parent="."]
 script = ExtResource("2_ykoyx")
 
-[node name="BaseModule" type="Node3D" parent="Modules"]
-script = ExtResource("3_n5dp1")
-
-[node name="InteractWithProp" type="Node3D" parent="Modules/BaseModule"]
+[node name="InteractWithProp" type="Node3D" parent="Modules"]
 script = ExtResource("4_vgvlu")
 interaction_time = 3.0
 
-[node name="Area3D" type="Area3D" parent="Modules/BaseModule/InteractWithProp"]
+[node name="Area3D" type="Area3D" parent="Modules/InteractWithProp"]
 collision_layer = 4
 collision_mask = 4
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="Modules/BaseModule/InteractWithProp/Area3D"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Modules/InteractWithProp/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65, 1, 0.0500002)
 shape = SubResource("CapsuleShape3D_138r2")
 
-[node name="FirePersonel" type="Node3D" parent="Modules/BaseModule/InteractWithProp"]
+[node name="FirePersonel" type="Node3D" parent="Modules/InteractWithProp"]
 script = ExtResource("5_8k4is")
 
-[node name="StandMarker" type="Marker3D" parent="Modules/BaseModule/InteractWithProp/FirePersonel"]
+[node name="StandMarker" type="Marker3D" parent="Modules/InteractWithProp/FirePersonel"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.30654, -0.00311712, 1.47805e-07)
+
+[node name="PlaySoundOnSuccessfulInteraction" type="Node3D" parent="Modules/InteractWithProp"]
+script = ExtResource("5_4yalh")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Modules/InteractWithProp/PlaySoundOnSuccessfulInteraction"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.96046e-08, 0, 0)
+stream = ExtResource("6_7827q")
+bus = &"SFX"
+
+[node name="PlaySoundOnFailedInteraction" type="Node3D" parent="Modules/InteractWithProp"]
+script = ExtResource("8_wjd0i")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Modules/InteractWithProp/PlaySoundOnFailedInteraction"]
+stream = ExtResource("8_1rrgl")
+
+[node name="KeyboardAudio" type="Node3D" parent="Modules"]
+script = ExtResource("5_461nq")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Modules/KeyboardAudio"]
+stream = SubResource("AudioStreamRandomizer_23c32")
+volume_db = -15.0
+max_db = -1.0
+autoplay = true
+max_distance = 5.0
 
 [node name="LeftTarget" type="Marker3D" parent="."]
 transform = Transform3D(-5.64755e-08, 1, 5.51409e-08, -0.198359, 4.28428e-08, -0.980129, -0.980129, -6.6291e-08, 0.198359, -1.14307, 0.975206, -0.277736)
@@ -116,7 +154,7 @@ transform = Transform3D(-5.64755e-08, 1, 5.51409e-08, -0.198359, 4.28428e-08, -0
 transform = Transform3D(-5.64755e-08, 1, 5.51409e-08, -0.198359, 4.28428e-08, -0.980129, -0.980129, -6.6291e-08, 0.198359, -1.09071, 0.962553, 0.385023)
 
 [node name="office_chair" parent="." instance=ExtResource("1_7kklu")]
-transform = Transform3D(7.54979e-08, 0, -1, 0, 1, 0, 1, 0, 7.54979e-08, -1.58935, -2.38419e-07, 0.036594)
+transform = Transform3D(-3.61999e-06, 0, -1, 0, 1, 0, 1, 0, -3.61999e-06, -1.58935, -2.38419e-07, 0.036594)
 
 [node name="Node3D" type="Node3D" parent="office_chair"]
 transform = Transform3D(-0.457886, -0.457886, 0.762025, -0.707107, 0.707107, 0, -0.538833, -0.538833, -0.647548, 0.510913, 0.0184014, -0.273563)
@@ -129,33 +167,33 @@ unique_name_in_owner = true
 transform = Transform3D(1.2, 0, -1.78814e-07, 0, 1.2, 0, 1.78814e-07, 0, 1.2, 0.000399265, 0.0197391, 0.149061)
 
 [node name="GeneralSkeleton" parent="office_chair/NPC/Modules/Mesh/Root Scene/RootNode" index="0"]
-bones/0/position = Vector3(0.00467727, 0.531299, 0.0125825)
-bones/0/rotation = Quaternion(-0.0855269, -0.00238249, -0.00847733, 0.996297)
-bones/1/rotation = Quaternion(0.174147, 0.033497, -0.0174733, 0.983995)
-bones/2/rotation = Quaternion(0.0258734, 0.00832937, -0.00212672, 0.999628)
-bones/3/rotation = Quaternion(0.0259492, 0.00804536, -0.00252413, 0.999628)
-bones/4/rotation = Quaternion(0.0413664, -0.00837286, -0.000508042, 0.999109)
-bones/5/rotation = Quaternion(-0.117111, -0.00151511, 0.0200027, 0.992916)
-bones/7/rotation = Quaternion(0.473961, 0.494168, 0.622417, -0.379151)
-bones/8/rotation = Quaternion(0.360236, 0.880683, -0.2819, 0.123121)
-bones/9/rotation = Quaternion(0.328826, -0.625998, 0.328826, 0.625998)
-bones/10/rotation = Quaternion(-0.0827682, 0.865022, 0.176212, 0.462423)
-bones/11/rotation = Quaternion(0.0681737, -0.000162203, -0.03742, 0.996971)
-bones/12/rotation = Quaternion(0.354666, 6.45278e-08, -0.0363451, 0.934286)
-bones/13/rotation = Quaternion(0.0403193, 1.96923e-09, -0.00413194, 0.999178)
-bones/15/rotation = Quaternion(0.457196, -0.505291, -0.633135, -0.367142)
-bones/16/rotation = Quaternion(-0.473142, 0.859534, -0.192378, -0.0181434)
-bones/17/rotation = Quaternion(0.277704, 0.650293, -0.277704, 0.650293)
-bones/18/rotation = Quaternion(-0.222139, -0.832313, -0.294392, 0.413814)
-bones/19/rotation = Quaternion(0.554248, -0.00108455, 0.0794222, 0.828553)
-bones/20/rotation = Quaternion(0.293755, 1.30669e-07, 0.0239301, 0.955581)
-bones/21/rotation = Quaternion(0.0600977, 9.84745e-10, 0.00489574, 0.998181)
-bones/23/rotation = Quaternion(0.0540687, 0.630858, 0.769399, -0.084383)
-bones/24/rotation = Quaternion(0.0734446, 0.710982, -0.698995, -0.0227094)
-bones/25/rotation = Quaternion(0.0226423, 0.703869, -0.709655, -0.0211009)
-bones/28/rotation = Quaternion(-0.0691577, 0.630679, 0.772561, 0.0247255)
-bones/29/rotation = Quaternion(0.0615795, 0.670488, -0.736537, -0.0645535)
-bones/30/rotation = Quaternion(-0.0294131, 0.656504, -0.753749, 0.000422543)
+bones/0/position = Vector3(0.00594426, 0.530172, 0.0115867)
+bones/0/rotation = Quaternion(-0.0890595, 0.00241186, -0.015669, 0.9959)
+bones/1/rotation = Quaternion(0.191869, 0.0292215, -0.0311995, 0.980489)
+bones/2/rotation = Quaternion(0.0261113, 0.00704715, -0.0030184, 0.99963)
+bones/3/rotation = Quaternion(0.0258747, 0.00674512, -0.0043061, 0.999633)
+bones/4/rotation = Quaternion(0.0449959, -0.00248819, -0.00128764, 0.998983)
+bones/5/rotation = Quaternion(-0.155849, 0.0646232, 0.0186038, 0.985489)
+bones/7/rotation = Quaternion(0.480319, 0.497207, 0.593394, -0.412266)
+bones/8/rotation = Quaternion(0.398049, 0.860425, -0.297433, 0.112955)
+bones/9/rotation = Quaternion(0.340882, -0.619515, 0.340882, 0.619515)
+bones/10/rotation = Quaternion(-0.10885, 0.874164, 0.126691, 0.456003)
+bones/11/rotation = Quaternion(-0.0713108, 0.00353116, 0.00695935, 0.997424)
+bones/12/rotation = Quaternion(0.393046, 2.98023e-08, -0.0402781, 0.918636)
+bones/13/rotation = Quaternion(0.0793847, 1.34111e-07, -0.00813504, 0.996811)
+bones/15/rotation = Quaternion(0.451845, -0.510462, -0.631759, -0.368979)
+bones/16/rotation = Quaternion(-0.428391, 0.876047, -0.215895, -0.0491098)
+bones/17/rotation = Quaternion(0.336595, 0.621855, -0.336595, 0.621855)
+bones/18/rotation = Quaternion(-0.203931, -0.843875, -0.223056, 0.443321)
+bones/19/rotation = Quaternion(0.0929563, -0.000512082, 0.0478525, 0.99452)
+bones/20/rotation = Quaternion(0.378842, -2.98024e-08, 0.0308615, 0.924946)
+bones/21/rotation = Quaternion(0.150646, -2.55847e-13, 0.0122721, 0.988512)
+bones/23/rotation = Quaternion(0.0510381, 0.631358, 0.768938, -0.0867029)
+bones/24/rotation = Quaternion(0.0756661, 0.709554, -0.700107, -0.0256275)
+bones/25/rotation = Quaternion(0.025099, 0.705707, -0.707653, -0.0239928)
+bones/28/rotation = Quaternion(-0.0745638, 0.626892, 0.775159, 0.023998)
+bones/29/rotation = Quaternion(0.0606594, 0.669991, -0.737025, -0.0650145)
+bones/30/rotation = Quaternion(-0.0300895, 0.655851, -0.754279, -0.00410806)
 
 [node name="RightIK" parent="office_chair/NPC/Modules/Mesh/Root Scene/RootNode/GeneralSkeleton" index="16"]
 target_node = NodePath("../../../../../../../../RightTarget")

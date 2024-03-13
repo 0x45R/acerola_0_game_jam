@@ -1,7 +1,7 @@
 @tool
 extends MeshInstance3D
 
-func _process(delta):
+func _ready():
 	var parent_name = get_parent().name
 	var number = int(parent_name.right(1))
 	if number is int:

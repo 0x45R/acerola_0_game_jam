@@ -13,7 +13,7 @@ extends BaseModule
 @export var enabled: bool: set = _set_enabled
 
 func _ready():
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().process_frame
 	enabled = module.state != module.STATE.Sleeping
 
 func _update_visuals():

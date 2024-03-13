@@ -1,21 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://btc2g5lwq2pbm"]
+[gd_scene load_steps=3 format=3 uid="uid://btc2g5lwq2pbm"]
 
 [ext_resource type="Theme" uid="uid://de0sidstciui4" path="res://src/ui/themes/theme.tres" id="1_a3d54"]
+[ext_resource type="Texture2D" uid="uid://ohqvso013h7v" path="res://src/textures/strike1.png" id="2_lcbbo"]
 
 [node name="EmployeeListEntry" type="HBoxContainer"]
 theme = ExtResource("1_a3d54")
 theme_override_constants/separation = 16
 
-[node name="Code" type="Label" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Code" type="Label" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "A1"
 
-[node name="Description" type="Label" parent="."]
+[node name="Description" type="Label" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Ruppert Pwuaski
 0% EFFICENCY"
+
+[node name="StrikeThrough" type="TextureProgressBar" parent="VBoxContainer"]
+unique_name_in_owner = true
+z_index = 1
+y_sort_enabled = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture_progress = ExtResource("2_lcbbo")
+texture_progress_offset = Vector2(-30, -40)
